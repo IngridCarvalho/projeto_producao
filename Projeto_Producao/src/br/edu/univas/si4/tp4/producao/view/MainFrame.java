@@ -2,20 +2,27 @@ package br.edu.univas.si4.tp4.producao.view;
 
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+
+import br.edu.univas.si4.tp4.producao.controller.Controller;
 
 public class MainFrame extends JFrame {
 	
 	private static final long serialVersionUID = -2918957853484721298L;
 	
+	private Controller controller;
+	
 	private JButton btProdutos;
 	private JButton btOrdemProducao;
 	private JButton btRelatorios;
 	
-	public MainFrame(){
+	public MainFrame(Controller controller){
 		super("Tela Principal");
+		this.controller = controller;
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
 		initialize();
@@ -25,7 +32,7 @@ public class MainFrame extends JFrame {
 	
 	public void initialize(){
 		setLayout(new FlowLayout());
-		setSize(600, 140);
+		setSize(600, 150);
 		add(getBtProdutos());
 		add(getBtOrdemProducao());
 		add(getBtRelatorios());
@@ -39,6 +46,13 @@ public class MainFrame extends JFrame {
 			btProdutos = new JButton();
 			btProdutos.setText("Produtos"); 
 			btProdutos.setPreferredSize(new Dimension(150, 100));
+			btProdutos.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					ProdutosClicked();
+				}
+			});
 		}
 		return btProdutos;
 	}
@@ -61,6 +75,10 @@ public class MainFrame extends JFrame {
 		}
 		return btRelatorios;
 		
+	}
+	
+	public void ProdutosClicked(){
+		controller.Produtos();
 	}
 }
 
