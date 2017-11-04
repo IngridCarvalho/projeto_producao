@@ -22,6 +22,7 @@ public class ProdutosFrame extends JFrame{
 	
 	public void initialize(){
 		add(getBuscaProdutos(), BorderLayout.NORTH);
+		add(getListaProdutos(), BorderLayout.CENTER);
 		add(getBotoesProdutos(), BorderLayout.PAGE_END);
 		setVisible(true);
 	}

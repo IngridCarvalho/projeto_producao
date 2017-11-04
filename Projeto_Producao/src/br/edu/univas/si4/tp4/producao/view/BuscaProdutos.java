@@ -8,10 +8,10 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
+
 public class BuscaProdutos extends JPanel{
 	
 	private static final long serialVersionUID = 7186043854237048421L;
-	
 	
 	private JLabel buscaProdutos;
 	private JTextField campoBusca;
@@ -40,7 +40,7 @@ public class BuscaProdutos extends JPanel{
 	public JTextField getCampoBusca(){
 		if(campoBusca == null){
 			campoBusca = new JTextField();
-			campoBusca.setColumns(40);
+			campoBusca.setColumns(43);
 		}
 		return campoBusca;
 	}

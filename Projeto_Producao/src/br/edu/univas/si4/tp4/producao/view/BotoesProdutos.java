@@ -1,10 +1,14 @@
 package br.edu.univas.si4.tp4.producao.view;
 
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import br.edu.univas.si4.tp4.producao.controller.Controller;
 
 public class BotoesProdutos extends JPanel{
 
@@ -59,5 +63,5 @@ public class BotoesProdutos extends JPanel{
 		}
 		return btComposicao;
 	}
-		
+	
 }
