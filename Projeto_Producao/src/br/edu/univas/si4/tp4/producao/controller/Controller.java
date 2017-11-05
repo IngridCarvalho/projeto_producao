@@ -3,12 +3,13 @@ package br.edu.univas.si4.tp4.producao.controller;
 import br.edu.univas.si4.tp4.producao.view.MainFrame;
 import br.edu.univas.si4.tp4.producao.view.ProdutosFrame;
 import br.edu.univas.si4.tp4.producao.view.CadastrarProdutos;
+import br.edu.univas.si4.tp4.producao.view.CadastrarProdutosFrame;
 
 public class Controller {
 	
 	private MainFrame mainFrame;
 	private ProdutosFrame produtosFrame;
-	private CadastrarProdutos cadastrarProdutos;
+	private CadastrarProdutosFrame cadastrarProdutos;
 
 	public Controller(){
 		mainFrame = new MainFrame(this);
@@ -19,10 +20,12 @@ public class Controller {
 	}
 	
 	public void Produtos(){
-		produtosFrame = new ProdutosFrame();
+		produtosFrame = new ProdutosFrame(this);
 	}
 
-	public void CadastrarProdutos(){
-		cadastrarProdutos = new CadastrarProdutos();
+	public void cadastrarProdutos() {
+		cadastrarProdutos = new CadastrarProdutosFrame();
+		cadastrarProdutos.setVisible(true);
 	}
+
 }

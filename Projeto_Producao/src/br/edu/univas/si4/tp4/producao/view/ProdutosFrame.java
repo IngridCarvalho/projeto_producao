@@ -3,16 +3,25 @@ package br.edu.univas.si4.tp4.producao.view;
 import java.awt.BorderLayout;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
+import br.edu.univas.si4.tp4.producao.controller.ButtonsListenerOpcoesProdutos;
+import br.edu.univas.si4.tp4.producao.controller.Controller;
 
 public class ProdutosFrame extends JFrame{
 
 	private static final long serialVersionUID = 2393978203579456409L;
+	
+	private Controller controllerProdutos;
+	private CadastrarProdutosFrame cadastroProdutos;
+	
 	private BuscaProdutos buscaProdutos;
 	private ListaProdutos listaProdutos;
-	private BotoesProdutos botoesProdutos;
+	private BotoesOpcoesProdutos botoesProdutos;
 	
-	public ProdutosFrame(){
+	public ProdutosFrame(Controller controller){
 		super("Produtos");
+		controllerProdutos = controller;
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setSize(700, 600);
 		setResizable(false);
@@ -41,10 +50,49 @@ public class ProdutosFrame extends JFrame{
 		return listaProdutos;
 	}
 
-	public BotoesProdutos getBotoesProdutos() {
+	public BotoesOpcoesProdutos getBotoesProdutos() {
 		if(botoesProdutos == null){
-			botoesProdutos = new BotoesProdutos();
+			botoesProdutos = new BotoesOpcoesProdutos();
+			botoesProdutos.addButtonsListenerProdutos(new ButtonsListenerOpcoesProdutos() {
+				
+				@Override
+				public void cadastrarPerformed() {
+					cadastrarClicked();
+					
+				}
+				@Override
+				public void alterarPerformed() {
+					alterarClicked();
+					
+				}
+				
+				@Override
+				public void excluirPerformed() {
+					excluirClicked();
+					
+				}
+				
+				@Override
+				public void composicaoPerformed() {
+					composicaoClicked();
+					
+				}
+			});
 		}
 		return botoesProdutos;
+	}
+	
+	public void cadastrarClicked(){
+		controllerProdutos.cadastrarProdutos();
+	}
+	
+	public void alterarClicked(){
+		JOptionPane.showMessageDialog(this, "Alterar");
+	}
+	public void excluirClicked(){
+		JOptionPane.showMessageDialog(this, "Excluido com Sucesso");
+	}
+	public void composicaoClicked(){
+		JOptionPane.showMessageDialog(this, "Composição");
 	}
 }

@@ -1,12 +1,15 @@
 package br.edu.univas.si4.tp4.producao.view;
 
 import java.awt.Dimension;
-import java.awt.FlowLayout;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 
 import br.edu.univas.si4.tp4.producao.controller.Controller;
 
@@ -16,9 +19,15 @@ public class MainFrame extends JFrame {
 	
 	private Controller controller;
 	
+	private JLabel tituloLabel;
 	private JButton btProdutos;
 	private JButton btOrdemProducao;
 	private JButton btRelatorios;
+	
+	private GridBagConstraints tituloLabelConstraints;
+	private GridBagConstraints btProdutosConstraints;
+	private GridBagConstraints btOrdemProducaoConstraints;
+	private GridBagConstraints btRelatoriosConstraints;
 	
 	public MainFrame(Controller controller){
 		super("Tela Principal");
@@ -31,16 +40,24 @@ public class MainFrame extends JFrame {
 	}
 	
 	public void initialize(){
-		setLayout(new FlowLayout());
-		setSize(600, 150);
-		add(getBtProdutos());
-		add(getBtOrdemProducao());
-		add(getBtRelatorios());
-		
+		setLayout(new GridBagLayout());
+		setSize(700, 600);
+		add(getTituloLabel(), getTituloLabelConstraints());
+		add(getBtProdutos(), getBtProdutosConstraints());
+		add(getBtOrdemProducao(), getBtOrdemProducaoConstraints());
+		add(getBtRelatorios(), getBtRelatoriosConstraints());
 		setVisible(true);
 		
 	}
 	
+	public JLabel getTituloLabel() {
+		if(tituloLabel == null){
+			tituloLabel = new JLabel();
+			tituloLabel.setText("Produção");
+		}
+		return tituloLabel;
+	}
+
 	public JButton getBtProdutos(){
 		if(btProdutos == null){
 			btProdutos = new JButton();
@@ -77,6 +94,46 @@ public class MainFrame extends JFrame {
 		
 	}
 	
+	private GridBagConstraints getTituloLabelConstraints() {
+		if(tituloLabelConstraints == null){
+			tituloLabelConstraints = new GridBagConstraints();
+			tituloLabelConstraints.gridx = 1;
+			tituloLabelConstraints.gridy = 0;
+			tituloLabelConstraints.insets = new Insets(20, 20, 300, 20);
+		}
+		return tituloLabelConstraints;
+	}
+
+	private GridBagConstraints getBtProdutosConstraints() {
+		if(btProdutosConstraints == null){
+			btProdutosConstraints = new GridBagConstraints();
+			btProdutosConstraints.gridx = 0;
+			btProdutosConstraints.gridy = 1;
+			btProdutosConstraints.insets = new Insets(20, 20, 20, 20);
+		}
+		return btProdutosConstraints;
+	}
+
+	private GridBagConstraints getBtOrdemProducaoConstraints() {
+		if(btOrdemProducaoConstraints == null){
+			btOrdemProducaoConstraints = new GridBagConstraints();
+			btOrdemProducaoConstraints.gridx = 1;
+			btOrdemProducaoConstraints.gridy = 1;
+			btOrdemProducaoConstraints.insets = new Insets(20, 20, 20, 20);
+		}
+		return btOrdemProducaoConstraints;
+	}
+
+	private GridBagConstraints getBtRelatoriosConstraints() {
+		if(btRelatoriosConstraints == null){
+			btRelatoriosConstraints = new GridBagConstraints();
+			btRelatoriosConstraints.gridx = 2;
+			btRelatoriosConstraints.gridy = 1;
+			btRelatoriosConstraints.insets = new Insets(20, 20, 20, 20);
+		}
+		return btRelatoriosConstraints;
+	}
+
 	public void ProdutosClicked(){
 		controller.Produtos();
 	}
