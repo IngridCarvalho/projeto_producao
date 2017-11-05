@@ -6,6 +6,7 @@ import java.awt.FlowLayout;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.ScrollPaneConstants;
 
 public class ListaProdutos extends JPanel{
 	
@@ -27,7 +28,7 @@ public class ListaProdutos extends JPanel{
 	Object [] colunasProdutos = {"Código", "Nome", "Quantidade"};
 	
 	Object [][] dados = {
-			{1, "Pão", 10}
+			{1, "bolo de chocolate", 10}
 			};
 	
 	
@@ -41,7 +42,8 @@ public class ListaProdutos extends JPanel{
 	public JScrollPane getListaProdutosScrollPane() {
 		if(listaProdutosScrollPane == null){
 			listaProdutosScrollPane = new JScrollPane(tabelaProdutos);
-			listaProdutosScrollPane.setPreferredSize(new Dimension(670, 450));
+			listaProdutosScrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+			listaProdutosScrollPane.setPreferredSize(new Dimension(670, 355));
 			
 		}
 		return listaProdutosScrollPane;

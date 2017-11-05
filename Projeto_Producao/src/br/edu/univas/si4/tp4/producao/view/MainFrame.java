@@ -41,7 +41,7 @@ public class MainFrame extends JFrame {
 	
 	public void initialize(){
 		setLayout(new GridBagLayout());
-		setSize(700, 600);
+		setSize(700, 500);
 		add(getTituloLabel(), getTituloLabelConstraints());
 		add(getBtProdutos(), getBtProdutosConstraints());
 		add(getBtOrdemProducao(), getBtOrdemProducaoConstraints());
@@ -99,7 +99,7 @@ public class MainFrame extends JFrame {
 			tituloLabelConstraints = new GridBagConstraints();
 			tituloLabelConstraints.gridx = 1;
 			tituloLabelConstraints.gridy = 0;
-			tituloLabelConstraints.insets = new Insets(20, 20, 300, 20);
+			tituloLabelConstraints.insets = new Insets(20, 20, 250, 20);
 		}
 		return tituloLabelConstraints;
 	}

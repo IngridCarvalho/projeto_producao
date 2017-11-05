@@ -4,6 +4,4 @@ public interface ButtonsListenerOpcoesProdutos {
 	void cadastrarPerformed();
 	void alterarPerformed();
 	void excluirPerformed();
-	void composicaoPerformed();
-	
 }

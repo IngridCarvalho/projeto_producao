@@ -1,5 +1,6 @@
 package br.edu.univas.si4.tp4.producao.view;
 
+import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -18,7 +19,6 @@ public class BotoesOpcoesProdutos extends JPanel{
 	private JButton btCadastrar;
 	private JButton btAlterar;
 	private JButton btExcluir;
-	private JButton btComposicao;
 	
 	private ArrayList<ButtonsListenerOpcoesProdutos> listenersOpcoes = new ArrayList<>();
 	
@@ -27,18 +27,16 @@ public class BotoesOpcoesProdutos extends JPanel{
 	}
 		
 	public void initialize(){
-		setLayout(new GridLayout(1, 4, 10, 10));
-		setBorder(new EmptyBorder(10, 10, 10, 10));
 		add(getBtCadastrar());
 		add(getBtAlterar());
 		add(getBtExcluir());
-		add(getBtComposicao());
 	}
 
 	public JButton getBtCadastrar() {
 		if(btCadastrar == null){
 			btCadastrar = new JButton();
 			btCadastrar.setText("Cadastrar");
+			btCadastrar.setPreferredSize(new Dimension(100, 30));
 			btCadastrar.addActionListener(new ActionListener() {
 				
 				@Override
@@ -54,6 +52,7 @@ public class BotoesOpcoesProdutos extends JPanel{
 		if(btAlterar == null){
 			btAlterar = new JButton();
 			btAlterar.setText("Alterar");
+			btAlterar.setPreferredSize(new Dimension(100, 30));
 			btAlterar.addActionListener(new ActionListener() {
 				
 				@Override
@@ -69,6 +68,7 @@ public class BotoesOpcoesProdutos extends JPanel{
 		if(btExcluir == null){
 			btExcluir = new JButton();
 			btExcluir.setText("Excluir");
+			btExcluir.setPreferredSize(new Dimension(100, 30));
 			btExcluir.addActionListener(new ActionListener() {
 				
 				@Override
@@ -79,22 +79,6 @@ public class BotoesOpcoesProdutos extends JPanel{
 			});
 		}
 		return btExcluir;
-	}
-
-	public JButton getBtComposicao() {
-		if(btComposicao == null){
-			btComposicao = new JButton();
-			btComposicao.setText("Composição");
-			btComposicao.addActionListener(new ActionListener() {
-				
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					composicaoClicked();
-					
-				}
-			});
-		}
-		return btComposicao;
 	}
 	
 	public void addButtonsListenerProdutos(ButtonsListenerOpcoesProdutos listener){
@@ -119,11 +103,4 @@ public class BotoesOpcoesProdutos extends JPanel{
 			listener.excluirPerformed();
 		}
 	}
-	
-	private void composicaoClicked(){
-		for(ButtonsListenerOpcoesProdutos listener : listenersOpcoes){
-			listener.composicaoPerformed();
-		}
-	}
-
 }

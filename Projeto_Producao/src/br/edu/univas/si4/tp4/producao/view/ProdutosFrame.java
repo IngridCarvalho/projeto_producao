@@ -13,7 +13,6 @@ public class ProdutosFrame extends JFrame{
 	private static final long serialVersionUID = 2393978203579456409L;
 	
 	private Controller controllerProdutos;
-	private CadastrarProdutosFrame cadastroProdutos;
 	
 	private BuscaProdutos buscaProdutos;
 	private ListaProdutos listaProdutos;
@@ -23,7 +22,7 @@ public class ProdutosFrame extends JFrame{
 		super("Produtos");
 		controllerProdutos = controller;
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		setSize(700, 600);
+		setSize(700, 500);
 		setResizable(false);
 		initialize();
 		setLocationRelativeTo(null);
@@ -71,12 +70,6 @@ public class ProdutosFrame extends JFrame{
 					excluirClicked();
 					
 				}
-				
-				@Override
-				public void composicaoPerformed() {
-					composicaoClicked();
-					
-				}
 			});
 		}
 		return botoesProdutos;
@@ -91,8 +84,5 @@ public class ProdutosFrame extends JFrame{
 	}
 	public void excluirClicked(){
 		JOptionPane.showMessageDialog(this, "Excluido com Sucesso");
-	}
-	public void composicaoClicked(){
-		JOptionPane.showMessageDialog(this, "Composição");
 	}
 }

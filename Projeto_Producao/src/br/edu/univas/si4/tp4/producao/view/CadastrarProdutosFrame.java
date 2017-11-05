@@ -17,14 +17,14 @@ public class CadastrarProdutosFrame extends JFrame{
 	public CadastrarProdutosFrame(){
 		super("Cadastro de Produto");
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		setSize(700, 600);
+		setSize(700, 500);
 		setResizable(false);
 		initialize();
 		setLocationRelativeTo(null);
 	}
 	
 	public void initialize(){
-		add(getCadastroProdutos(), BorderLayout.CENTER);
+		add(getCadastroProdutos(), BorderLayout.NORTH);
 		add(getBotoesCadastro(), BorderLayout.PAGE_END);
 	}
 
