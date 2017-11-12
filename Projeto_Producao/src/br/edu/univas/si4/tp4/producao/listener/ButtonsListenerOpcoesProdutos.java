@@ -1,7 +1,7 @@
-package br.edu.univas.si4.tp4.producao.controller;
+package br.edu.univas.si4.tp4.producao.listener;
 
 public interface ButtonsListenerOpcoesProdutos {
-	void cadastrarPerformed();
+	void incluirPerformed();
 	void alterarPerformed();
 	void excluirPerformed();
 }

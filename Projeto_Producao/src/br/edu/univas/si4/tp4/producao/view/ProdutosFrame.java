@@ -5,8 +5,8 @@ import java.awt.BorderLayout;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
-import br.edu.univas.si4.tp4.producao.controller.ButtonsListenerOpcoesProdutos;
 import br.edu.univas.si4.tp4.producao.controller.Controller;
+import br.edu.univas.si4.tp4.producao.listener.ButtonsListenerOpcoesProdutos;
 
 public class ProdutosFrame extends JFrame{
 
@@ -14,9 +14,9 @@ public class ProdutosFrame extends JFrame{
 	
 	private Controller controllerProdutos;
 	
-	private BuscaProdutos buscaProdutos;
-	private ListaProdutos listaProdutos;
-	private BotoesOpcoesProdutos botoesProdutos;
+	private BuscaProdutosPanel buscaProdutos;
+	private ListaProdutosPanel listaProdutos;
+	private BotoesOpcoesPanel botoesProdutos;
 	
 	public ProdutosFrame(Controller controller){
 		super("Produtos");
@@ -35,27 +35,27 @@ public class ProdutosFrame extends JFrame{
 		setVisible(true);
 	}
 
-	public BuscaProdutos getBuscaProdutos() {
+	public BuscaProdutosPanel getBuscaProdutos() {
 		if(buscaProdutos == null){
-			buscaProdutos = new BuscaProdutos();
+			buscaProdutos = new BuscaProdutosPanel();
 		}
 		return buscaProdutos;
 	}
 	
-	public ListaProdutos getListaProdutos(){
+	public ListaProdutosPanel getListaProdutos(){
 		if(listaProdutos == null){
-			listaProdutos = new ListaProdutos();
+			listaProdutos = new ListaProdutosPanel();
 		}
 		return listaProdutos;
 	}
 
-	public BotoesOpcoesProdutos getBotoesProdutos() {
+	public BotoesOpcoesPanel getBotoesProdutos() {
 		if(botoesProdutos == null){
-			botoesProdutos = new BotoesOpcoesProdutos();
+			botoesProdutos = new BotoesOpcoesPanel();
 			botoesProdutos.addButtonsListenerProdutos(new ButtonsListenerOpcoesProdutos() {
 				
 				@Override
-				public void cadastrarPerformed() {
+				public void incluirPerformed() {
 					cadastrarClicked();
 					
 				}

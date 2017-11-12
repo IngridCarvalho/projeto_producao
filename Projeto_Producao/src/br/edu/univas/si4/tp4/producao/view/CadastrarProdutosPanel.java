@@ -10,7 +10,7 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
-public class CadastrarProdutos extends JPanel{
+public class CadastrarProdutosPanel extends JPanel{
 	
 	private static final long serialVersionUID = 1L;
 	private JLabel nomeLabel;
@@ -36,7 +36,7 @@ public class CadastrarProdutos extends JPanel{
 	private GridBagConstraints tipoProdutoCompConstraints;
 	private GridBagConstraints tipoProdutoMpConstraints;
 	
-	public CadastrarProdutos(){
+	public CadastrarProdutosPanel(){
 		initialize();
 	}
 	
@@ -206,7 +206,7 @@ public class CadastrarProdutos extends JPanel{
 			qtdEstoqueLabelConstraints = new GridBagConstraints();
 			qtdEstoqueLabelConstraints.gridx = 0;
 			qtdEstoqueLabelConstraints.gridy = 3;
-			qtdEstoqueLabelConstraints.insets = new Insets(5, 15, 5, 15);
+			qtdEstoqueLabelConstraints.insets = new Insets(5, 15, 20, 15);
 		}
 		return qtdEstoqueLabelConstraints;
 	}
@@ -217,7 +217,7 @@ public class CadastrarProdutos extends JPanel{
 			qtdEstoqueFieldConstraints.gridx = 1;
 			qtdEstoqueFieldConstraints.gridy = 3;
 			qtdEstoqueFieldConstraints.ipadx = 100;
-			qtdEstoqueFieldConstraints.insets = new Insets(5, 15, 5, 15);
+			qtdEstoqueFieldConstraints.insets = new Insets(5, 15, 20, 15);
 		}
 		return qtdEstoqueFieldConstraints;
 	}
@@ -227,7 +227,7 @@ public class CadastrarProdutos extends JPanel{
 			tipoProdutoCompConstraints = new GridBagConstraints();
 			tipoProdutoCompConstraints.gridx = 2;
 			tipoProdutoCompConstraints.gridy = 3;
-			tipoProdutoCompConstraints.insets = new Insets(5, 15, 5, 15);
+			tipoProdutoCompConstraints.insets = new Insets(5, 15, 20, 15);
 		}
 		return tipoProdutoCompConstraints;
 	}
@@ -237,7 +237,7 @@ public class CadastrarProdutos extends JPanel{
 			tipoProdutoMpConstraints = new GridBagConstraints();
 			tipoProdutoMpConstraints.gridx = 3;
 			tipoProdutoMpConstraints.gridy = 3;
-			tipoProdutoMpConstraints.insets = new Insets(5, 15, 5, 15);
+			tipoProdutoMpConstraints.insets = new Insets(5, 15, 20, 15);
 		}
 		return tipoProdutoMpConstraints;
 	}

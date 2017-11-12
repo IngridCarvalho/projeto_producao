@@ -7,16 +7,16 @@ import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-import br.edu.univas.si4.tp4.producao.controller.ButtonsListenerCadastro;
+import br.edu.univas.si4.tp4.producao.listener.ButtonsListenerCadastro;
 
-public class BotoesCadastro extends JPanel {
+public class BotoesCadastroPanel extends JPanel {
 	
 	private JButton btConfirmar;
 	private JButton btCancelar;
 	
 	private ArrayList<ButtonsListenerCadastro> listeners = new ArrayList<>();
 	
-	public BotoesCadastro(){
+	public BotoesCadastroPanel(){
 		initialize();
 	}
 	

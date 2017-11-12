@@ -13,7 +13,7 @@ import javax.swing.JLabel;
 
 import br.edu.univas.si4.tp4.producao.controller.Controller;
 
-public class MainFrame extends JFrame {
+public class TelaPrincipalFrame extends JFrame {
 	
 	private static final long serialVersionUID = -2918957853484721298L;
 	
@@ -29,7 +29,7 @@ public class MainFrame extends JFrame {
 	private GridBagConstraints btOrdemProducaoConstraints;
 	private GridBagConstraints btRelatoriosConstraints;
 	
-	public MainFrame(Controller controller){
+	public TelaPrincipalFrame(Controller controller){
 		super("Tela Principal");
 		this.controller = controller;
 		setDefaultCloseOperation(EXIT_ON_CLOSE);

@@ -9,7 +9,7 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 
-public class BuscaProdutos extends JPanel{
+public class BuscaProdutosPanel extends JPanel{
 	
 	private static final long serialVersionUID = 7186043854237048421L;
 	
@@ -17,7 +17,7 @@ public class BuscaProdutos extends JPanel{
 	private JTextField campoBusca;
 	private JButton btBuscar;
 	
-	public BuscaProdutos(){	
+	public BuscaProdutosPanel(){	
 		initialize();
 	}
 	

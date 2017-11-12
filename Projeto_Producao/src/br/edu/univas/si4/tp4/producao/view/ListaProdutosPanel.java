@@ -8,14 +8,14 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ScrollPaneConstants;
 
-public class ListaProdutos extends JPanel{
+public class ListaProdutosPanel extends JPanel{
 	
 	private static final long serialVersionUID = -4605241641736507551L;
 	
 	private JTable tabelaProdutos;
 	private JScrollPane listaProdutosScrollPane;
 	
-	public ListaProdutos(){
+	public ListaProdutosPanel(){
 		initialize();
 	}
 	
