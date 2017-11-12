@@ -63,6 +63,7 @@ public class ListaComponentesPanel extends JPanel{
 	private BotoesOpcoesPanel getOpcoesPanel() {
 		if(opcoesPanel == null){
 			opcoesPanel = new BotoesOpcoesPanel();
+			//TODO: IMPLEMENTAR BOTOES
 		}
 		return opcoesPanel;
 	}
