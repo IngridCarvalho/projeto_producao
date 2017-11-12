@@ -79,6 +79,13 @@ public class TelaPrincipalFrame extends JFrame {
 			btOrdemProducao = new JButton();
 			btOrdemProducao.setText("Ordem de Produção");
 			btOrdemProducao.setPreferredSize(new Dimension(150, 100));
+			btOrdemProducao.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					OrdemProducaoClicked();
+				}
+			});
 		}
 		
 		return btOrdemProducao;
@@ -136,6 +143,10 @@ public class TelaPrincipalFrame extends JFrame {
 
 	public void ProdutosClicked(){
 		controller.Produtos();
+	}
+	
+	public void OrdemProducaoClicked(){
+		controller.OrdemProducao();
 	}
 }
 

@@ -49,6 +49,7 @@ public class BuscaProdutosPanel extends JPanel{
 		if (btBuscar == null){
 			btBuscar = new JButton();
 			btBuscar.setText("Buscar");
+			//TODO:IMPLEMENTAR
 		}
 		return btBuscar;
 	}

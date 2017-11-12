@@ -38,6 +38,7 @@ public class ProdutosFrame extends JFrame{
 	public BuscaProdutosPanel getBuscaProdutos() {
 		if(buscaProdutos == null){
 			buscaProdutos = new BuscaProdutosPanel();
+			//TODO: implementar botao de busca
 		}
 		return buscaProdutos;
 	}
