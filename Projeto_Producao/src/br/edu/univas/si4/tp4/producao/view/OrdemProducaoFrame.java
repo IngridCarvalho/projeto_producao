@@ -5,6 +5,7 @@ import java.awt.BorderLayout;
 import javax.swing.JFrame;
 
 import br.edu.univas.si4.tp4.producao.controller.Controller;
+import br.edu.univas.si4.tp4.producao.listener.ButtonsListenerOpcoesProdutos;
 
 public class OrdemProducaoFrame extends JFrame{
 	
@@ -28,7 +29,7 @@ public class OrdemProducaoFrame extends JFrame{
 	
 	public void initialize(){
 		add(getBuscaOrdemProducao(), BorderLayout.NORTH);
-		//add(getListaOrdemProducao(), BorderLayout.CENTER);
+		add(getListaOrdemProducao(), BorderLayout.CENTER);
 		add(getBotoesOpcoes(), BorderLayout.PAGE_END);
 	}
 
@@ -50,8 +51,32 @@ public class OrdemProducaoFrame extends JFrame{
 	private BotoesOpcoesPanel getBotoesOpcoes() {
 		if(botoesOpcoes == null){
 			botoesOpcoes = new BotoesOpcoesPanel();
-			//TODO: implementar botoes
+			botoesOpcoes.addButtonsListenerProdutos(new ButtonsListenerOpcoesProdutos() {
+				
+				@Override
+				public void incluirPerformed() {
+					incluirClicked();
+					
+				}
+				
+				@Override
+				public void excluirPerformed() {
+					// TODO Auto-generated method stub
+					
+				}
+				
+				@Override
+				public void alterarPerformed() {
+					// TODO Auto-generated method stub
+					
+				}
+			});;
+			
 		}
 		return botoesOpcoes;
+	}
+	
+	public void incluirClicked(){
+		controller.IncluirOrdemProducao();;
 	}
 }

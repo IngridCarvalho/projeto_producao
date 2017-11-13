@@ -3,6 +3,7 @@ package br.edu.univas.si4.tp4.producao.controller;
 import br.edu.univas.si4.tp4.producao.view.TelaPrincipalFrame;
 import br.edu.univas.si4.tp4.producao.view.ProdutosFrame;
 import br.edu.univas.si4.tp4.producao.view.CadastrarProdutosPanel;
+import br.edu.univas.si4.tp4.producao.view.IncluirOrdemProducaoFrame;
 import br.edu.univas.si4.tp4.producao.view.OrdemProducaoFrame;
 import br.edu.univas.si4.tp4.producao.view.CadastrarProdutosFrame;
 
@@ -12,6 +13,7 @@ public class Controller {
 	private ProdutosFrame produtosFrame;
 	private CadastrarProdutosFrame cadastrarProdutos;
 	private OrdemProducaoFrame ordemProducaoFrame;
+	private IncluirOrdemProducaoFrame incluirOrdemProducao;
 
 	public Controller(){
 		mainFrame = new TelaPrincipalFrame(this);
@@ -33,6 +35,11 @@ public class Controller {
 	public void OrdemProducao() {
 		ordemProducaoFrame = new OrdemProducaoFrame(this);
 		ordemProducaoFrame.setVisible(true);
+	}
+	
+	public void IncluirOrdemProducao(){
+		incluirOrdemProducao = new IncluirOrdemProducaoFrame(this);
+		incluirOrdemProducao.setVisible(true);
 	}
 
 }
