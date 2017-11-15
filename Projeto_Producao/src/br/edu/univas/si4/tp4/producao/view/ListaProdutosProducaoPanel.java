@@ -1,8 +1,11 @@
 package br.edu.univas.si4.tp4.producao.view;
 
+import java.awt.Dimension;
+
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.ScrollPaneConstants;
 
 
 public class ListaProdutosProducaoPanel extends JPanel{
@@ -38,6 +41,8 @@ public class ListaProdutosProducaoPanel extends JPanel{
 	private JScrollPane getTabelaProdutosProducaoScroll() {
 		if(tabelaProdutosProducaoScroll == null){
 			tabelaProdutosProducaoScroll = new JScrollPane(tabelaProdutosProducao);
+			tabelaProdutosProducaoScroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+			tabelaProdutosProducaoScroll.setPreferredSize(new Dimension(550, 250));
 		}
 		return tabelaProdutosProducaoScroll;
 	}
