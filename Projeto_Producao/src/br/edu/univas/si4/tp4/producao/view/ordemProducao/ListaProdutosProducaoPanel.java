@@ -42,7 +42,7 @@ public class ListaProdutosProducaoPanel extends JPanel{
 		if(tabelaProdutosProducaoScroll == null){
 			tabelaProdutosProducaoScroll = new JScrollPane(tabelaProdutosProducao);
 			tabelaProdutosProducaoScroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-			tabelaProdutosProducaoScroll.setPreferredSize(new Dimension(670, 300));
+			tabelaProdutosProducaoScroll.setPreferredSize(new Dimension(670, 200));
 		}
 		return tabelaProdutosProducaoScroll;
 	}

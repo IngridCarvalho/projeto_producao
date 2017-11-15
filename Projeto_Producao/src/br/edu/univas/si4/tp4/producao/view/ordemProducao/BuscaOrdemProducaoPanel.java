@@ -1,6 +1,5 @@
 package br.edu.univas.si4.tp4.producao.view.ordemProducao;
 
-import java.awt.GraphicsDevice;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -12,8 +11,6 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-
-import com.sun.accessibility.internal.resources.accessibility;
 
 import br.edu.univas.si4.tp4.producao.listener.ButtonsListenerBuscar;
 
