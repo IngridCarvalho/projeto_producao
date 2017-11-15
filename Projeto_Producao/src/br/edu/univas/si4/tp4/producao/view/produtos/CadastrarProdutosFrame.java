@@ -1,4 +1,4 @@
-package br.edu.univas.si4.tp4.producao.view;
+package br.edu.univas.si4.tp4.producao.view.produtos;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -9,6 +9,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 import br.edu.univas.si4.tp4.producao.listener.ButtonsListenerCadastro;
+import br.edu.univas.si4.tp4.producao.view.BotoesCadastroPanel;
 
 public class CadastrarProdutosFrame extends JFrame{
 

@@ -1,4 +1,4 @@
-package br.edu.univas.si4.tp4.producao.view;
+package br.edu.univas.si4.tp4.producao.view.produtos;
 
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;

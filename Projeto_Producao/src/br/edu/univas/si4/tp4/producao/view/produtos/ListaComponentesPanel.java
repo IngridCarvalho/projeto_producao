@@ -1,4 +1,4 @@
-package br.edu.univas.si4.tp4.producao.view;
+package br.edu.univas.si4.tp4.producao.view.produtos;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -8,6 +8,8 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ScrollPaneConstants;
+
+import br.edu.univas.si4.tp4.producao.view.BotoesOpcoesPanel;
 
 public class ListaComponentesPanel extends JPanel{
 	

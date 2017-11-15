@@ -1,4 +1,4 @@
-package br.edu.univas.si4.tp4.producao.view;
+package br.edu.univas.si4.tp4.producao.view.produtos;
 
 import java.awt.BorderLayout;
 
@@ -7,6 +7,7 @@ import javax.swing.JOptionPane;
 
 import br.edu.univas.si4.tp4.producao.controller.Controller;
 import br.edu.univas.si4.tp4.producao.listener.ButtonsListenerOpcoesProdutos;
+import br.edu.univas.si4.tp4.producao.view.BotoesOpcoesPanel;
 
 public class ProdutosFrame extends JFrame{
 

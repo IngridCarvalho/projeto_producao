@@ -1,19 +1,28 @@
-package br.edu.univas.si4.tp4.producao.view;
+package br.edu.univas.si4.tp4.producao.view.ordemProducao;
 
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import sun.awt.Graphics2Delegate;
+import br.edu.univas.si4.tp4.producao.listener.ButtonsListenerBuscar;
+import br.edu.univas.si4.tp4.producao.listener.ButtonsListenerOpcoesProdutos;
+import br.edu.univas.si4.tp4.producao.view.BotoesOpcoesPanel;
+
 
 public class BuscarProdutosOrdemProducaoPanel extends JPanel{
 	
 	private static final long serialVersionUID = -6620702498375111873L;
+	
+	private ArrayList<ButtonsListenerBuscar> listenerBuscar = new ArrayList<>();
 	
 	private JLabel pesquisaProdutoLabel;
 	private JTextField pesquisaProdutoField;
@@ -46,7 +55,7 @@ public class BuscarProdutosOrdemProducaoPanel extends JPanel{
 	private JLabel getPesquisaProdutoLabel() {
 		if(pesquisaProdutoLabel == null){
 			pesquisaProdutoLabel = new JLabel();
-			pesquisaProdutoLabel.setText("Código ou nome:");
+			pesquisaProdutoLabel.setText("Código ou nome do item:");
 		}
 		return pesquisaProdutoLabel;
 	}
@@ -54,7 +63,7 @@ public class BuscarProdutosOrdemProducaoPanel extends JPanel{
 	private JTextField getPesquisaProdutoField() {
 		if(pesquisaProdutoField == null){
 			pesquisaProdutoField = new JTextField();
-			pesquisaProdutoField.setColumns(25);
+			pesquisaProdutoField.setColumns(36);
 		}
 		return pesquisaProdutoField;
 	}
@@ -63,7 +72,13 @@ public class BuscarProdutosOrdemProducaoPanel extends JPanel{
 		if(btBuscar == null){
 			btBuscar = new JButton();
 			btBuscar.setText("Buscar");
-			//TODO: implementar botao buscar
+			btBuscar.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					buscarClicked();
+				}
+			});
 		}
 		return btBuscar;
 	}
@@ -79,7 +94,7 @@ public class BuscarProdutosOrdemProducaoPanel extends JPanel{
 	private JTextField getQtdField() {
 		if(qtdField == null){
 			qtdField = new JTextField();
-			qtdField.setColumns(20);
+			qtdField.setColumns(10);
 		}
 		return qtdField;
 	}
@@ -87,7 +102,26 @@ public class BuscarProdutosOrdemProducaoPanel extends JPanel{
 	private BotoesOpcoesPanel getBotoesOpcoes() {
 		if(botoesOpcoes == null){
 			botoesOpcoes = new BotoesOpcoesPanel();
-			//TODO: implementar botoes
+			botoesOpcoes.addButtonsListenerProdutos(new ButtonsListenerOpcoesProdutos() {
+				
+				@Override
+				public void incluirPerformed() {
+					incluirClicked();
+					
+				}
+				
+				@Override
+				public void excluirPerformed() {
+					excluirClicked();
+					
+				}
+				
+				@Override
+				public void alterarPerformed() {
+					alterarClicked();
+					
+				}
+			});
 		}
 		return botoesOpcoes;
 	}
@@ -97,7 +131,7 @@ public class BuscarProdutosOrdemProducaoPanel extends JPanel{
 			pesquisaProdutosLabelConstraints = new GridBagConstraints();
 			pesquisaProdutosLabelConstraints.gridx = 0;
 			pesquisaProdutosLabelConstraints.gridy = 0;
-			pesquisaProdutosLabelConstraints.insets = new Insets(15, 15, 5, 15);
+			pesquisaProdutosLabelConstraints.insets = new Insets(15, 15, 5, 5);
 		}
 		return pesquisaProdutosLabelConstraints;
 	}
@@ -107,8 +141,6 @@ public class BuscarProdutosOrdemProducaoPanel extends JPanel{
 			pesquisaProdutosFieldConstraints = new GridBagConstraints();
 			pesquisaProdutosFieldConstraints.gridx = 1;
 			pesquisaProdutosFieldConstraints.gridy = 0;
-			pesquisaProdutosFieldConstraints.ipadx = 100;
-			pesquisaProdutosFieldConstraints.gridwidth = 2;
 			pesquisaProdutosFieldConstraints.insets = new Insets(15, 15, 5, 15);
 		}
 		return pesquisaProdutosFieldConstraints;
@@ -129,7 +161,7 @@ public class BuscarProdutosOrdemProducaoPanel extends JPanel{
 			qtdLabelConstraints = new GridBagConstraints();
 			qtdLabelConstraints.gridx = 0;
 			qtdLabelConstraints.gridy = 1;
-			qtdLabelConstraints.insets = new Insets(15, 15, 5, 15);
+			qtdLabelConstraints.insets = new Insets(3, 15, 5, 15);
 		}
 		return qtdLabelConstraints;
 	}
@@ -139,7 +171,8 @@ public class BuscarProdutosOrdemProducaoPanel extends JPanel{
 			qtdFieldConstraints = new GridBagConstraints();
 			qtdFieldConstraints.gridx = 1;
 			qtdFieldConstraints.gridy = 1;
-			qtdFieldConstraints.insets = new Insets(15, 15, 5, 15);
+			qtdFieldConstraints.anchor = GridBagConstraints.WEST;
+			qtdFieldConstraints.insets = new Insets(3, 15, 5, 15);
 		}
 		return qtdFieldConstraints;
 	}
@@ -154,5 +187,29 @@ public class BuscarProdutosOrdemProducaoPanel extends JPanel{
 		return botoesOpcoesConstraints;
 	}
 	
+	public void addButtonsListenerBuscar(ButtonsListenerBuscar listener){
+		listenerBuscar.add(listener);
+	}
+	
+	public void buscarClicked(){
+		for(ButtonsListenerBuscar listener : listenerBuscar){
+			listenerBuscar.add(listener);
+		}
+	}
+	
+	public void incluirClicked(){
+		JOptionPane.showMessageDialog(this, "Incluido item na lista");
+		//TODO: implementar inclusão de item na lista de produtos a produzir
+	}
+	
+	public void excluirClicked(){
+		JOptionPane.showMessageDialog(this, "Excluido com sucesso");
+		//TODO: implementar exclusão de item da lista de produtos a produzir
+	}
+	
+	public void alterarClicked(){
+		JOptionPane.showMessageDialog(this, "Alterado com sucesso");
+		//TODO: implementar alteração do item da lista
+	}
 	
 }

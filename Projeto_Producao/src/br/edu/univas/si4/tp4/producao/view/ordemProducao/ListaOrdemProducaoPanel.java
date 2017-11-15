@@ -1,4 +1,4 @@
-package br.edu.univas.si4.tp4.producao.view;
+package br.edu.univas.si4.tp4.producao.view.ordemProducao;
 
 import java.awt.Dimension;
 
@@ -40,7 +40,7 @@ public class ListaOrdemProducaoPanel extends JPanel{
 		if(tabelaOrdemProducaoScroll == null){
 			tabelaOrdemProducaoScroll = new JScrollPane(tabelaOrdemProducao);
 			tabelaOrdemProducaoScroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-			tabelaOrdemProducaoScroll.setPreferredSize(new Dimension(550, 250));
+			tabelaOrdemProducaoScroll.setPreferredSize(new Dimension(620, 350));
 		}
 		return tabelaOrdemProducaoScroll;
 	}

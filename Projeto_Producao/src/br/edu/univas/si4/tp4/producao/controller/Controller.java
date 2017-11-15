@@ -1,11 +1,11 @@
 package br.edu.univas.si4.tp4.producao.controller;
 
 import br.edu.univas.si4.tp4.producao.view.TelaPrincipalFrame;
-import br.edu.univas.si4.tp4.producao.view.ProdutosFrame;
-import br.edu.univas.si4.tp4.producao.view.CadastrarProdutosPanel;
-import br.edu.univas.si4.tp4.producao.view.IncluirOrdemProducaoFrame;
-import br.edu.univas.si4.tp4.producao.view.OrdemProducaoFrame;
-import br.edu.univas.si4.tp4.producao.view.CadastrarProdutosFrame;
+import br.edu.univas.si4.tp4.producao.view.ordemProducao.IncluirOrdemProducaoFrame;
+import br.edu.univas.si4.tp4.producao.view.ordemProducao.OrdemProducaoFrame;
+import br.edu.univas.si4.tp4.producao.view.produtos.CadastrarProdutosFrame;
+import br.edu.univas.si4.tp4.producao.view.produtos.CadastrarProdutosPanel;
+import br.edu.univas.si4.tp4.producao.view.produtos.ProdutosFrame;
 
 public class Controller {
 	

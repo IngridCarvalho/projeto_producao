@@ -1,11 +1,14 @@
-package br.edu.univas.si4.tp4.producao.view;
+package br.edu.univas.si4.tp4.producao.view.ordemProducao;
 
 import java.awt.BorderLayout;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 import br.edu.univas.si4.tp4.producao.controller.Controller;
+import br.edu.univas.si4.tp4.producao.listener.ButtonsListenerBuscar;
 import br.edu.univas.si4.tp4.producao.listener.ButtonsListenerOpcoesProdutos;
+import br.edu.univas.si4.tp4.producao.view.BotoesOpcoesPanel;
 
 public class OrdemProducaoFrame extends JFrame{
 	
@@ -36,7 +39,14 @@ public class OrdemProducaoFrame extends JFrame{
 	private BuscaOrdemProducaoPanel getBuscaOrdemProducao() {
 		if(buscaOrdemProducao == null){
 			buscaOrdemProducao = new BuscaOrdemProducaoPanel();
-			//TODO: Implementar botao buscar
+			buscaOrdemProducao.addButtonsListenerBuscar(new ButtonsListenerBuscar() {
+				
+				@Override
+				public void buscarPerfomed() {
+					buscarClicked();
+					
+				}
+			});
 		}
 		return buscaOrdemProducao;
 	}
@@ -61,13 +71,13 @@ public class OrdemProducaoFrame extends JFrame{
 				
 				@Override
 				public void excluirPerformed() {
-					// TODO Auto-generated method stub
+					excluirClicked();
 					
 				}
 				
 				@Override
 				public void alterarPerformed() {
-					// TODO Auto-generated method stub
+					alterarClicked();
 					
 				}
 			});;
@@ -76,7 +86,22 @@ public class OrdemProducaoFrame extends JFrame{
 		return botoesOpcoes;
 	}
 	
+	public void buscarClicked(){
+		JOptionPane.showMessageDialog(this, "Busca de Ordens de Produção");
+		//TODO: implementar busca de ordens de producao por descrição e período
+	}
+	
 	public void incluirClicked(){
 		controller.IncluirOrdemProducao();;
+	}
+	
+	public void excluirClicked(){
+		JOptionPane.showMessageDialog(this, "Excluído com sucesso!");
+		//TODO: implementar exclusão de ordens de producao
+	}
+	
+	public void alterarClicked(){
+		JOptionPane.showMessageDialog(this, "Alterado");
+		//TODO: implementar alteração das ordens de producao
 	}
 }
