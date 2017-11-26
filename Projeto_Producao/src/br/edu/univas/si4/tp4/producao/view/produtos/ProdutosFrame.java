@@ -8,6 +8,9 @@ import javax.swing.JOptionPane;
 import br.edu.univas.si4.tp4.producao.controller.Controller;
 import br.edu.univas.si4.tp4.producao.listener.ButtonsListenerCadastro;
 import br.edu.univas.si4.tp4.producao.listener.ButtonsListenerOpcoesProdutos;
+import br.edu.univas.si4.tp4.producao.model.ProdutoDAO;
+import br.edu.univas.si4.tp4.producao.model.ProdutoException;
+import br.edu.univas.si4.tp4.producao.model.ProdutoTO;
 import br.edu.univas.si4.tp4.producao.view.BotoesCadastroPanel;
 import br.edu.univas.si4.tp4.producao.view.BotoesOpcoesPanel;
 
@@ -24,6 +27,9 @@ public class ProdutosFrame extends JFrame{
 	private CadastrarProdutosPanel cadastroProdutos;
 	private ListaComponentesPanel listaComponentes;
 	private BotoesCadastroPanel botoesCadastro;
+	
+	private ProdutoDAO produtoDAO;
+	private ProdutoTO produtoTO; 
 	
 	public ProdutosFrame(Controller controller){
 		super("Produtos");
@@ -167,19 +173,33 @@ public class ProdutosFrame extends JFrame{
 	}
 	
 	public void confirmarClicked(){
+		produtoDAO = new ProdutoDAO();
+		produtoTO = new ProdutoTO();
+		produtoTO = cadastroProdutos.getProduto();
+		try{
+			produtoDAO.insertNewProduto(produtoTO);
+		}catch(ProdutoException	e){
+			System.out.println("Erro salvando área de pesquisa.");
+			e.printStackTrace();
+		}
 		JOptionPane.showMessageDialog(this, "Salvo com sucesso");
 	}
 	
 	public void cancelarClicked(){
-		setBuscaProdutos(null);
-		setListaProdutos(null);
-		setBotoesProdutos(null);
 		getCadastroProdutos().removeAll();
 		getCadastroProdutos().revalidate();
 		getListaComponentes().removeAll();
 		getListaComponentes().revalidate();
 		getBotoesCadastro().removeAll();
 		getBotoesCadastro().revalidate();
+		setBuscaProdutos(null);
+		setListaProdutos(null);
+		setBotoesProdutos(null);
 		initialize();
 	}
+
+	public void incluirComponenteClicked() {
+		controllerProdutos.Produtos();
+	}
+	
 }

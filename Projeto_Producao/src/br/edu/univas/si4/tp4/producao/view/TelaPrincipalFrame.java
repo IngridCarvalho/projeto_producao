@@ -96,11 +96,21 @@ public class TelaPrincipalFrame extends JFrame {
 			btRelatorios = new JButton();
 			btRelatorios.setText("Relatórios");
 			btRelatorios.setPreferredSize(new Dimension(150, 100));
+			btRelatorios.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					RelatoriosClicked();
+					
+				}
+			});
 		}
 		return btRelatorios;
 		
 	}
 	
+
+
 	private GridBagConstraints getTituloLabelConstraints() {
 		if(tituloLabelConstraints == null){
 			tituloLabelConstraints = new GridBagConstraints();
@@ -147,6 +157,11 @@ public class TelaPrincipalFrame extends JFrame {
 	
 	public void OrdemProducaoClicked(){
 		controller.OrdemProducao();
+	}
+	
+	public void RelatoriosClicked() {
+		controller.Relatorios();
+		
 	}
 }
 
