@@ -5,12 +5,15 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.ParseException;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
+import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.text.MaskFormatter;
 
 import br.edu.univas.si4.tp4.producao.listener.ButtonsListenerBuscar;
 
@@ -23,9 +26,10 @@ public class BuscaOrdemProducaoPanel extends JPanel{
 	private JLabel nomeLabel;
 	private JTextField nomeField;
 	private JLabel periodoLabel;
-	private JTextField periodoInicialField;
+	private MaskFormatter dataMask;
+	private JFormattedTextField periodoInicialField;
 	private JLabel ateLabel;
-	private JTextField periodoFinalField;
+	private JFormattedTextField periodoFinalField;
 	private JButton buscarButton;
 	
 	private GridBagConstraints nomeLabelConstraints;
@@ -54,7 +58,7 @@ public class BuscaOrdemProducaoPanel extends JPanel{
 	private JLabel getNomeLabel() {
 		if(nomeLabel == null){
 			nomeLabel = new JLabel();
-			nomeLabel.setText("Nome do Produto:");
+			nomeLabel.setText("Descrição da Produção:");
 		}
 		return nomeLabel;
 	}
@@ -75,9 +79,23 @@ public class BuscaOrdemProducaoPanel extends JPanel{
 		return periodoLabel;
 	}
 
-	private JTextField getPeriodoInicialField() {
+	private MaskFormatter getDataMask() {
+		if(dataMask == null){
+			try{
+				dataMask = new MaskFormatter("##/##/####");
+				dataMask.setPlaceholderCharacter('_');
+			}
+			catch(ParseException excp){
+				System.err.println("Erro na formatação: " + excp.getMessage());
+				System.exit(-1);
+			}
+		}
+		return dataMask;
+	}
+
+	private JFormattedTextField getPeriodoInicialField() {
 		if(periodoInicialField == null){
-			periodoInicialField = new JTextField();
+			periodoInicialField = new JFormattedTextField(getDataMask());
 			periodoInicialField.setColumns(15);
 		}
 		return periodoInicialField;
@@ -91,9 +109,9 @@ public class BuscaOrdemProducaoPanel extends JPanel{
 		return ateLabel;
 	}
 
-	private JTextField getPeriodoFinalField() {
+	private JFormattedTextField getPeriodoFinalField() {
 		if(periodoFinalField == null){
-			periodoFinalField = new JTextField();
+			periodoFinalField = new JFormattedTextField(getDataMask());
 			periodoFinalField.setColumns(15);
 		}
 		return periodoFinalField;

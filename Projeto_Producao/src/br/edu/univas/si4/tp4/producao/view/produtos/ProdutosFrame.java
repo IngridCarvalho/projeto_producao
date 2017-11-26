@@ -6,7 +6,9 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 import br.edu.univas.si4.tp4.producao.controller.Controller;
+import br.edu.univas.si4.tp4.producao.listener.ButtonsListenerCadastro;
 import br.edu.univas.si4.tp4.producao.listener.ButtonsListenerOpcoesProdutos;
+import br.edu.univas.si4.tp4.producao.view.BotoesCadastroPanel;
 import br.edu.univas.si4.tp4.producao.view.BotoesOpcoesPanel;
 
 public class ProdutosFrame extends JFrame{
@@ -18,6 +20,10 @@ public class ProdutosFrame extends JFrame{
 	private BuscaProdutosPanel buscaProdutos;
 	private ListaProdutosPanel listaProdutos;
 	private BotoesOpcoesPanel botoesProdutos;
+	
+	private CadastrarProdutosPanel cadastroProdutos;
+	private ListaComponentesPanel listaComponentes;
+	private BotoesCadastroPanel botoesCadastro;
 	
 	public ProdutosFrame(Controller controller){
 		super("Produtos");
@@ -42,8 +48,9 @@ public class ProdutosFrame extends JFrame{
 			//TODO: implementar botao de busca
 		}
 		return buscaProdutos;
+		
 	}
-	
+
 	public ListaProdutosPanel getListaProdutos(){
 		if(listaProdutos == null){
 			listaProdutos = new ListaProdutosPanel();
@@ -76,9 +83,80 @@ public class ProdutosFrame extends JFrame{
 		}
 		return botoesProdutos;
 	}
+
+	private CadastrarProdutosPanel getCadastroProdutos() {
+		if(cadastroProdutos == null){
+			cadastroProdutos = new CadastrarProdutosPanel();
+			getBuscaProdutos().removeAll();
+			getBuscaProdutos().revalidate();
+		}
+		return cadastroProdutos;
+	}
+
+	private ListaComponentesPanel getListaComponentes() {
+		if(listaComponentes == null){
+			listaComponentes = new ListaComponentesPanel();
+			getListaProdutos().removeAll();
+			getListaProdutos().revalidate();
+		}
+		return listaComponentes;
+	}
 	
+	private BotoesCadastroPanel getBotoesCadastro() {
+		if(botoesCadastro == null){
+			botoesCadastro = new BotoesCadastroPanel();
+			botoesCadastro.addButtonsListener(new ButtonsListenerCadastro() {
+				
+				@Override
+				public void confirmarPerfomed() {
+					confirmarClicked();
+					
+				}
+				
+				@Override
+				public void cancelarPerformed() {
+					cancelarClicked();
+					
+				}
+			});
+			getBotoesProdutos().removeAll();
+			getBotoesProdutos().revalidate();
+		}
+		return botoesCadastro;
+	}
+	
+	private void setBuscaProdutos(BuscaProdutosPanel buscaProdutos) {
+		this.buscaProdutos = buscaProdutos;
+	}
+
+	private void setListaProdutos(ListaProdutosPanel listaProdutos) {
+		this.listaProdutos = listaProdutos;
+	}
+
+	private void setBotoesProdutos(BotoesOpcoesPanel botoesProdutos) {
+		this.botoesProdutos = botoesProdutos;
+	}
+
+	private void setCadastroProdutos(CadastrarProdutosPanel cadastroProdutos) {
+		this.cadastroProdutos = cadastroProdutos;
+	}
+
+	private void setListaComponentes(ListaComponentesPanel listaComponentes) {
+		this.listaComponentes = listaComponentes;
+	}
+
+	private void setBotoesCadastro(BotoesCadastroPanel botoesCadastro) {
+		this.botoesCadastro = botoesCadastro;
+	}
+
 	public void cadastrarClicked(){
-		controllerProdutos.cadastrarProdutos();
+		setCadastroProdutos(null);
+		setListaComponentes(null);
+		setBotoesCadastro(null);
+		add(getCadastroProdutos(), BorderLayout.NORTH);
+		add(getListaComponentes(), BorderLayout.CENTER);
+		add(getBotoesCadastro(), BorderLayout.PAGE_END);
+		
 	}
 	
 	public void alterarClicked(){
@@ -86,5 +164,22 @@ public class ProdutosFrame extends JFrame{
 	}
 	public void excluirClicked(){
 		JOptionPane.showMessageDialog(this, "Excluido com Sucesso");
+	}
+	
+	public void confirmarClicked(){
+		JOptionPane.showMessageDialog(this, "Salvo com sucesso");
+	}
+	
+	public void cancelarClicked(){
+		setBuscaProdutos(null);
+		setListaProdutos(null);
+		setBotoesProdutos(null);
+		getCadastroProdutos().removeAll();
+		getCadastroProdutos().revalidate();
+		getListaComponentes().removeAll();
+		getListaComponentes().revalidate();
+		getBotoesCadastro().removeAll();
+		getBotoesCadastro().revalidate();
+		initialize();
 	}
 }

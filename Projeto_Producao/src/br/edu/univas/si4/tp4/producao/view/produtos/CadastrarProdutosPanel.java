@@ -3,9 +3,12 @@ package br.edu.univas.si4.tp4.producao.view.produtos;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
@@ -117,6 +120,13 @@ public class CadastrarProdutosPanel extends JPanel{
 	public JRadioButton getTipoProdutoComp() {
 		if(tipoProdutoComp == null){
 			tipoProdutoComp = new JRadioButton("Composição");
+			tipoProdutoComp.addItemListener(new ItemListener() {
+				
+				@Override
+				public void itemStateChanged(ItemEvent e) {
+					composicaoSelecionado();
+				}
+			});
 		}
 		return tipoProdutoComp;
 	}
@@ -151,7 +161,6 @@ public class CadastrarProdutosPanel extends JPanel{
 			nomeFieldConstraints.gridx = 1;
 			nomeFieldConstraints.gridy = 0;
 			nomeFieldConstraints.ipadx = 100;
-		//	nomeFieldConstraints.weightx = 1.0;
 			nomeFieldConstraints.gridwidth = 3;
 			nomeFieldConstraints.fill = GridBagConstraints.HORIZONTAL;
 			nomeFieldConstraints.insets = new Insets(15, 15, 5, 15);
@@ -241,5 +250,11 @@ public class CadastrarProdutosPanel extends JPanel{
 		}
 		return tipoProdutoMpConstraints;
 	}
-	
+	public void composicaoSelecionado(){
+		if(tipoProdutoComp.isSelected()){
+		JOptionPane.showMessageDialog(this, "Se o Produto é uma composição, você deve informar os componentes abaixo");
+		}else{
+			
+		}
+	}
 }

@@ -5,15 +5,18 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.ParseException;
 import java.util.ArrayList;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
+import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
+import javax.swing.text.MaskFormatter;
 
 import br.edu.univas.si4.tp4.producao.listener.ButtonsListenerBuscar;
 import br.edu.univas.si4.tp4.producao.listener.ButtonsListenerOpcoesProdutos;
@@ -27,10 +30,11 @@ public class BuscarProdutosOrdemProducaoPanel extends JPanel{
 	
 	private JLabel descricaoOrdemLabel;
 	private JTextField descricaoOrdemField;
+	private MaskFormatter dataMask;
 	private JLabel dataInclusaoLabel;
-	private JTextField dataInclusaoField;
+	private JFormattedTextField dataInclusaoField;
 	private JLabel dataFinalizacaoLabel;
-	private JTextField dataFinalizacaoField;
+	private JFormattedTextField dataFinalizacaoField;
 	private JRadioButton pendenteRadio;
 	private JRadioButton finalizadoRadio;
 	private ButtonGroup status;
@@ -103,12 +107,26 @@ public class BuscarProdutosOrdemProducaoPanel extends JPanel{
 		return dataInclusaoLabel;
 	}
 
-	private JTextField getDataInclusaoField() {
+	private JFormattedTextField getDataInclusaoField() {
 		if(dataInclusaoField == null){
-			dataInclusaoField = new JTextField();
+			dataInclusaoField = new JFormattedTextField(getDataMask());
 			dataInclusaoField.setColumns(10);
 		}
 		return dataInclusaoField;
+	}
+	
+	private MaskFormatter getDataMask() {
+		if(dataMask == null){
+			try{
+				dataMask = new MaskFormatter("##/##/####");
+				dataMask.setPlaceholderCharacter('_');
+			}
+			catch(ParseException excp){
+				System.err.println("Erro na formatação: " + excp.getMessage());
+				System.exit(-1);
+			}
+		}
+		return dataMask;
 	}
 
 	private JLabel getDataFinalizacaoLabel() {
@@ -119,9 +137,9 @@ public class BuscarProdutosOrdemProducaoPanel extends JPanel{
 		return dataFinalizacaoLabel;
 	}
 
-	private JTextField getDataFinalizacaoField() {
+	private JFormattedTextField getDataFinalizacaoField() {
 		if(dataFinalizacaoField == null){
-			dataFinalizacaoField = new JTextField();
+			dataFinalizacaoField = new JFormattedTextField(getDataMask());
 			dataFinalizacaoField.setColumns(10);
 		}
 		return dataFinalizacaoField;
