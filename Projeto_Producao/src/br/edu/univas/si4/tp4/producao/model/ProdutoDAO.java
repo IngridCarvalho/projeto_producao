@@ -1,10 +1,17 @@
 package br.edu.univas.si4.tp4.producao.model;
 
+import java.awt.List;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class ProdutoDAO {
 	
+	private Object[][] listaProdutos;
+
+
 	public void insertNewProduto(ProdutoTO to)
 		throws ProdutoException{
 			String sentenca = "INSERT INTO PRODUTOS "
@@ -29,6 +36,33 @@ public class ProdutoDAO {
 		}finally{
 			DBUtil.closeConnection(conn);
 		}
+	}
+	
+	
+	public ArrayList<ProdutoTO> listarProdutos() throws ProdutoException{
+		String sql = "SELECT CODIGO, NOME, QTD"
+				+ " FROM PRODUTOS ORDER BY 1";
+		ArrayList<ProdutoTO> listaProdutos = new ArrayList<ProdutoTO>();
+		Connection conn = null;
+		
+		try{
+			conn = DBUtil.openConnection();
+			PreparedStatement prep = conn.prepareStatement(sql);
+			
+			ResultSet rs = prep.executeQuery();
+			while(rs.next()){
+				ProdutoTO to = new ProdutoTO();
+				to.setCodigo(rs.getInt(1));
+				to.setNome(rs.getString(2));
+				to.setQtd(rs.getInt(3));
+				listaProdutos.add(to);
+			}
+		}catch(SQLException e){
+			throw new ProdutoException("Erro");
+		}finally{
+			DBUtil.closeConnection(conn);
+		}
+		return listaProdutos;
 	}
 }
 

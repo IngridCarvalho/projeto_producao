@@ -19,8 +19,6 @@ public class CadastrarProdutosPanel extends JPanel{
 	
 	private static final long serialVersionUID = 1L;
 	
-	private ProdutoTO produto;
-	
 	public JLabel codigoLabel;
 	public JTextField codigoField;
 	private JLabel nomeLabel;

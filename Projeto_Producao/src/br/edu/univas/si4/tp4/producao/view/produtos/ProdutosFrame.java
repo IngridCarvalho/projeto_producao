@@ -90,7 +90,7 @@ public class ProdutosFrame extends JFrame{
 		return botoesProdutos;
 	}
 
-	private CadastrarProdutosPanel getCadastroProdutos() {
+	public CadastrarProdutosPanel getCadastroProdutos() {
 		if(cadastroProdutos == null){
 			cadastroProdutos = new CadastrarProdutosPanel();
 			getBuscaProdutos().removeAll();
@@ -99,7 +99,7 @@ public class ProdutosFrame extends JFrame{
 		return cadastroProdutos;
 	}
 
-	private ListaComponentesPanel getListaComponentes() {
+	public ListaComponentesPanel getListaComponentes() {
 		if(listaComponentes == null){
 			listaComponentes = new ListaComponentesPanel();
 			getListaProdutos().removeAll();
@@ -108,7 +108,7 @@ public class ProdutosFrame extends JFrame{
 		return listaComponentes;
 	}
 	
-	private BotoesCadastroPanel getBotoesCadastro() {
+	public BotoesCadastroPanel getBotoesCadastro() {
 		if(botoesCadastro == null){
 			botoesCadastro = new BotoesCadastroPanel();
 			botoesCadastro.addButtonsListener(new ButtonsListenerCadastro() {
@@ -173,16 +173,7 @@ public class ProdutosFrame extends JFrame{
 	}
 	
 	public void confirmarClicked(){
-		produtoDAO = new ProdutoDAO();
-		produtoTO = new ProdutoTO();
-		produtoTO = cadastroProdutos.getProduto();
-		try{
-			produtoDAO.insertNewProduto(produtoTO);
-		}catch(ProdutoException	e){
-			System.out.println("Erro salvando área de pesquisa.");
-			e.printStackTrace();
-		}
-		JOptionPane.showMessageDialog(this, "Salvo com sucesso");
+		controllerProdutos.cadastrarProdutoClicked();
 	}
 	
 	public void cancelarClicked(){

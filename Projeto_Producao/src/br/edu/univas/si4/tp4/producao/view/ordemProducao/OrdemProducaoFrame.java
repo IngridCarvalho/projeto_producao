@@ -22,7 +22,7 @@ public class OrdemProducaoFrame extends JFrame{
 	private ListaOrdemProducaoPanel listaOrdemProducao;
 	private BotoesOpcoesPanel botoesOpcoes;
 	
-	private BuscarProdutosOrdemProducaoPanel buscaProdutos;
+	private CadastrarOrdemProducaoPanel buscaProdutos;
 	private ListaProdutosProducaoPanel listaProdutos;
 	private BotoesCadastroPanel botoesCadastroPanel;
 	
@@ -93,9 +93,9 @@ public class OrdemProducaoFrame extends JFrame{
 		return botoesOpcoes;
 	}
 	
-	private BuscarProdutosOrdemProducaoPanel getBuscaProdutos() {
+	private CadastrarOrdemProducaoPanel getBuscaProdutos() {
 		if(buscaProdutos == null){
-			buscaProdutos = new BuscarProdutosOrdemProducaoPanel();
+			buscaProdutos = new CadastrarOrdemProducaoPanel();
 			buscaProdutos.addButtonsListenerBuscar(new ButtonsListenerBuscar() {
 				
 				@Override
@@ -152,7 +152,7 @@ public class OrdemProducaoFrame extends JFrame{
 		this.botoesOpcoes = botoesOpcoes;
 	}
 
-	private void setBuscaProdutos(BuscarProdutosOrdemProducaoPanel buscaProdutos) {
+	private void setBuscaProdutos(CadastrarOrdemProducaoPanel buscaProdutos) {
 		this.buscaProdutos = buscaProdutos;
 	}
 

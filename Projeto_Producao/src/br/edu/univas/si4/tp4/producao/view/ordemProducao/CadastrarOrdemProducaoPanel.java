@@ -22,7 +22,7 @@ import br.edu.univas.si4.tp4.producao.listener.ButtonsListenerBuscar;
 import br.edu.univas.si4.tp4.producao.listener.ButtonsListenerOpcoesProdutos;
 import br.edu.univas.si4.tp4.producao.view.BotoesOpcoesPanel;
 
-public class BuscarProdutosOrdemProducaoPanel extends JPanel{
+public class CadastrarOrdemProducaoPanel extends JPanel{
 	
 	private static final long serialVersionUID = -6620702498375111873L;
 	
@@ -60,7 +60,7 @@ public class BuscarProdutosOrdemProducaoPanel extends JPanel{
 	private GridBagConstraints qtdFieldConstraints;
 	private GridBagConstraints botoesOpcoesConstraints;
 	
-	public BuscarProdutosOrdemProducaoPanel(){
+	public CadastrarOrdemProducaoPanel(){
 		initialize();
 	}
 	

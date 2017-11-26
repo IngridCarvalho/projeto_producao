@@ -1,5 +1,10 @@
 package br.edu.univas.si4.tp4.producao.controller;
 
+import javax.swing.JOptionPane;
+
+import br.edu.univas.si4.tp4.producao.model.ProdutoDAO;
+import br.edu.univas.si4.tp4.producao.model.ProdutoException;
+import br.edu.univas.si4.tp4.producao.model.ProdutoTO;
 import br.edu.univas.si4.tp4.producao.view.TelaPrincipalFrame;
 import br.edu.univas.si4.tp4.producao.view.ordemProducao.OrdemProducaoFrame;
 import br.edu.univas.si4.tp4.producao.view.produtos.ProdutosFrame;
@@ -31,6 +36,20 @@ public class Controller {
 
 	public void Relatorios() {
 		relatoriosFrame = new RelatoriosFrame();
+		
+	}
+
+	public void cadastrarProdutoClicked() {
+		ProdutoDAO produtoDAO = new ProdutoDAO();
+		ProdutoTO produtoTO = new ProdutoTO();
+		produtoTO = produtosFrame.getCadastroProdutos().getProduto();
+		try{
+			produtoDAO.insertNewProduto(produtoTO);
+		}catch(ProdutoException	e){
+			System.out.println("Erro salvando área de pesquisa.");
+			e.printStackTrace();
+		}
+		JOptionPane.showMessageDialog(mainFrame, "Salvo com Sucesso");
 		
 	}
 

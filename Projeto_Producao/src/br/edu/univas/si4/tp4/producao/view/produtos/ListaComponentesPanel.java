@@ -18,7 +18,6 @@ public class ListaComponentesPanel extends JPanel{
 	private JTable tabelaComponentes;
 	private JScrollPane tabelaComponentesScrollPane; 
 	private BotoesOpcoesPanel opcoesPanel;
-	private ProdutosFrame produtosFrame;
 	
 	public ListaComponentesPanel(){
 		initialize();
@@ -59,7 +58,7 @@ public class ListaComponentesPanel extends JPanel{
 		if(tabelaComponentesScrollPane == null){
 			tabelaComponentesScrollPane = new JScrollPane(tabelaComponentes);
 			tabelaComponentesScrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-			tabelaComponentesScrollPane.setPreferredSize(new Dimension(550, 250));
+			tabelaComponentesScrollPane.setPreferredSize(new Dimension(550, 220));
 		}
 		return tabelaComponentesScrollPane;
 	}

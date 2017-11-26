@@ -8,6 +8,7 @@ public class ProdutoTO {
 	private float preco_custo;
 	private float preco_venda;
 	private int tipo_produto;
+	
 	public int getCodigo() {
 		return codigo;
 	}
