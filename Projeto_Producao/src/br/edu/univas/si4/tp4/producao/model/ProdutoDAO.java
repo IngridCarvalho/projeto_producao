@@ -64,5 +64,33 @@ public class ProdutoDAO {
 		}
 		return listaProdutos;
 	}
+	
+	public ArrayList<ItensOrdemTO> relatorio() throws ProdutoException{
+		String sql = "SELECT CODIGO, NOME, QTD, CUSTO, CUSTO_TOTAL"
+				+ " FROM PRODUTOS, ITENSORDEMPRODUCAO"
+				+ " WHERE PRODUTOS.CODIGO = ITENSORDEMPRODUCAO.CODIGO_ITEM";
+		ArrayList<ItensOrdemTO> relatorio = new ArrayList<ItensOrdemTO>();
+		Connection conn = null;
+		
+		try{
+			conn = DBUtil.openConnection();
+			PreparedStatement prep = conn.prepareStatement(sql);
+			
+			ResultSet rs = prep.executeQuery();
+			while(rs.next()){
+				ItensOrdemTO to = new ItensOrdemTO();
+				to.setCodigo(rs.getInt(1));
+				to.setNome(rs.getString(2));
+				to.setQtd(rs.getInt(3));
+				to.setCusto_unitario(rs.getFloat(3));
+				to.setCusto_total(rs.getFloat(5));
+			}
+		}catch(SQLException e){
+			throw new ProdutoException("Erro");
+		}finally{
+			DBUtil.closeConnection(conn);
+		}
+		return relatorio;
+	}
 }
 
