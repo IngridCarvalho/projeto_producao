@@ -65,8 +65,8 @@ public class ProdutoDAO {
 		return listaProdutos;
 	}
 	
-	public ArrayList<ItensOrdemTO> relatorio() throws ProdutoException{
-		String sql = "SELECT CODIGO, NOME, QTD, CUSTO, CUSTO_TOTAL"
+	public ArrayList<ItensOrdemTO> relatorioProdutos() throws ProdutoException{
+		String sql = "SELECT CODIGO, NOME, QTD, CUSTO_UNITARIO, CUSTO_TOTAL"
 				+ " FROM PRODUTOS, ITENSORDEMPRODUCAO"
 				+ " WHERE PRODUTOS.CODIGO = ITENSORDEMPRODUCAO.CODIGO_ITEM";
 		ArrayList<ItensOrdemTO> relatorio = new ArrayList<ItensOrdemTO>();
@@ -82,11 +82,12 @@ public class ProdutoDAO {
 				to.setCodigo(rs.getInt(1));
 				to.setNome(rs.getString(2));
 				to.setQtd(rs.getInt(3));
-				to.setCusto_unitario(rs.getFloat(3));
+				to.setCusto_unitario(rs.getFloat(4));
 				to.setCusto_total(rs.getFloat(5));
+				relatorio.add(to);
 			}
 		}catch(SQLException e){
-			throw new ProdutoException("Erro");
+			throw new ProdutoException("Erro" + e);
 		}finally{
 			DBUtil.closeConnection(conn);
 		}

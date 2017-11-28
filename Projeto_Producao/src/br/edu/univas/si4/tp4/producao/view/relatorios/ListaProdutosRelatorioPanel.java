@@ -36,11 +36,11 @@ public class ListaProdutosRelatorioPanel extends JPanel{
 	
 	public JTable getTabelaProdutos() {
 		if(tabelaProdutos == null){
-			DefaultTableModel modelo = new DefaultTableModel(null, new String[] {"Código", "Qtd", "Nome", "Custo", "Custo Total"});
+			DefaultTableModel modelo = new DefaultTableModel(null, new String[] {"Código", "Nome", "Quantidade", "Custo", "Custo Total"});
 			tabelaProdutos = new JTable(modelo);
-			    Object[] dados = new Object[3];
+			    Object[] dados = new Object[5];
 			    try{
-			    	ArrayList<ItensOrdemTO> listaProdutos = produtoDAO.relatorio();
+			    	ArrayList<ItensOrdemTO> listaProdutos = produtoDAO.relatorioProdutos();
 			    	for(ItensOrdemTO to : listaProdutos){
 						dados[0] = to.getCodigo();
 					    dados[1] = to.getNome();
