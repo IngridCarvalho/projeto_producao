@@ -32,7 +32,7 @@ public class TelaPrincipalFrame extends JFrame {
 	public TelaPrincipalFrame(Controller controller){
 		super("Tela Principal");
 		this.controller = controller;
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		
 		initialize();
 		setLocationRelativeTo(null);

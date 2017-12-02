@@ -34,7 +34,7 @@ public class ProdutosFrame extends JFrame{
 	public ProdutosFrame(Controller controller){
 		super("Produtos");
 		controllerProdutos = controller;
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setSize(700, 500);
 		setResizable(false);
 		initialize();
@@ -166,10 +166,26 @@ public class ProdutosFrame extends JFrame{
 	}
 	
 	public void alterarClicked(){
-		JOptionPane.showMessageDialog(this, "Alterar");
+		int linha = listaProdutos.getTabelaProdutos().getSelectedRow();
+		if(linha == -1){
+			JOptionPane.showMessageDialog(this, "Nenhum item selecionado");
+		}else{
+			Object valor = listaProdutos.getTabelaProdutos().getValueAt(linha, 0);
+			controllerProdutos.alterarProdutoClicked(valor);
+		}
+		
+		
+	//	JOptionPane.showMessageDialog(this, "Alterar");
 	}
 	public void excluirClicked(){
-		JOptionPane.showMessageDialog(this, "Excluido com Sucesso");
+		int linha = listaProdutos.getTabelaProdutos().getSelectedRow();
+		if(linha == -1){
+			JOptionPane.showMessageDialog(this, "Nenhum item selecionado");
+		}else{
+			Object valor = listaProdutos.getTabelaProdutos().getValueAt(linha, 0);
+			int valorInt = (int)valor;
+			controllerProdutos.excluirProdutoClicked(valorInt);
+		}
 	}
 	
 	public void confirmarClicked(){

@@ -65,6 +65,21 @@ public class ProdutoDAO {
 		return listaProdutos;
 	}
 	
+	public void deleteProduto(int codigo) throws ProdutoException{
+		String sql = "DELETE FROM PRODUTOs WHERE CODIGO = ?";
+		Connection conn = null;
+		try{
+			conn = DBUtil.openConnection();
+			PreparedStatement prep = conn.prepareStatement(sql);
+			prep.setInt(1, codigo);
+			prep.execute();
+		}catch(SQLException e){
+			throw new ProdutoException("Erro ao excluir produto: " + codigo);
+		}finally{
+			DBUtil.closeConnection(conn);
+		}
+	}
+	
 	public ArrayList<ItensOrdemTO> relatorioProdutos() throws ProdutoException{
 		String sql = "SELECT CODIGO, NOME, QTD, CUSTO_UNITARIO, CUSTO_TOTAL"
 				+ " FROM PRODUTOS, ITENSORDEMPRODUCAO"

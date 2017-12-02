@@ -15,7 +15,7 @@ public class RelatoriosFrame extends JFrame{
 	
 	public RelatoriosFrame(){
 		super("Relatórios");
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setSize(700, 500);
 		setResizable(false);
 		initialize();

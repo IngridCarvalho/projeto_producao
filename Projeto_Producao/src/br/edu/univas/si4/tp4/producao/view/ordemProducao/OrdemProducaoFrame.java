@@ -29,7 +29,7 @@ public class OrdemProducaoFrame extends JFrame{
 	public OrdemProducaoFrame(Controller controller){
 		super("Ordem de Produção");
 		this.controller = controller;
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setSize(700, 500);
 		setResizable(false);
 		initialize();

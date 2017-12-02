@@ -52,5 +52,25 @@ public class Controller {
 		JOptionPane.showMessageDialog(mainFrame, "Salvo com Sucesso");
 		
 	}
+	
+	public void alterarProdutoClicked(Object codigo){
+		ProdutoDAO produtoDAO = new ProdutoDAO();
+		ProdutoTO produtoTO = new ProdutoTO();
+		
+	}
+	
+	public void excluirProdutoClicked(int codigo){
+		ProdutoDAO produtoDAO = new ProdutoDAO();
+		try{
+			produtoDAO.deleteProduto(codigo);
+			System.out.println("Excluido com sucesso!");
+			JOptionPane.showMessageDialog(mainFrame, "Excluido com Sucesso");
+		}catch(ProdutoException e){
+			System.out.println("Erro ao excluir produto");
+			JOptionPane.showMessageDialog(mainFrame, "Erro ao excluir");
+			e.printStackTrace();
+		}
+		
+	}
 
 }

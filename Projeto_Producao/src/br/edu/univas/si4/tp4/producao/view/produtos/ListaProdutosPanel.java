@@ -55,6 +55,7 @@ public class ListaProdutosPanel extends JPanel{
 				e.printStackTrace();
 			}
 		}
+			
 			return tabelaProdutos;
 		}
 	    
