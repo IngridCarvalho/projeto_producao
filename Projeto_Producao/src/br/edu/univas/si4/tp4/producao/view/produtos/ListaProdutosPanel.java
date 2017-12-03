@@ -11,7 +11,7 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.table.DefaultTableModel;
 
 import br.edu.univas.si4.tp4.producao.model.ProdutoDAO;
-import br.edu.univas.si4.tp4.producao.model.ProdutoException;
+import br.edu.univas.si4.tp4.producao.model.DBException;
 import br.edu.univas.si4.tp4.producao.model.ProdutoTO;
 
 public class ListaProdutosPanel extends JPanel{
@@ -50,7 +50,7 @@ public class ListaProdutosPanel extends JPanel{
 				    dados[2] = to.getQtd();
 				    modelo.addRow(dados);
 				}
-			}catch(ProdutoException e){
+			}catch(DBException e){
 				System.out.println("Erro consultando área de pesquisa.");
 				e.printStackTrace();
 			}

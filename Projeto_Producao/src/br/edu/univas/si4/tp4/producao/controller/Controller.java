@@ -1,9 +1,12 @@
 package br.edu.univas.si4.tp4.producao.controller;
 
+
 import javax.swing.JOptionPane;
 
+import br.edu.univas.si4.tp4.producao.model.OrdemProducaoDAO;
+import br.edu.univas.si4.tp4.producao.model.OrdemProducaoTO;
 import br.edu.univas.si4.tp4.producao.model.ProdutoDAO;
-import br.edu.univas.si4.tp4.producao.model.ProdutoException;
+import br.edu.univas.si4.tp4.producao.model.DBException;
 import br.edu.univas.si4.tp4.producao.model.ProdutoTO;
 import br.edu.univas.si4.tp4.producao.view.TelaPrincipalFrame;
 import br.edu.univas.si4.tp4.producao.view.ordemProducao.OrdemProducaoFrame;
@@ -35,7 +38,7 @@ public class Controller {
 	}
 
 	public void Relatorios() {
-		relatoriosFrame = new RelatoriosFrame();
+		relatoriosFrame = new RelatoriosFrame(this);
 		
 	}
 
@@ -45,17 +48,16 @@ public class Controller {
 		produtoTO = produtosFrame.getCadastroProdutos().getProduto();
 		try{
 			produtoDAO.insertNewProduto(produtoTO);
-		}catch(ProdutoException	e){
+		}catch(DBException	e){
 			System.out.println("Erro salvando área de pesquisa.");
 			e.printStackTrace();
 		}
 		JOptionPane.showMessageDialog(mainFrame, "Salvo com Sucesso");
-		
+		produtosFrame.cancelarClicked();
 	}
 	
 	public void alterarProdutoClicked(Object codigo){
-		ProdutoDAO produtoDAO = new ProdutoDAO();
-		ProdutoTO produtoTO = new ProdutoTO();
+		//TODO
 		
 	}
 	
@@ -65,12 +67,31 @@ public class Controller {
 			produtoDAO.deleteProduto(codigo);
 			System.out.println("Excluido com sucesso!");
 			JOptionPane.showMessageDialog(mainFrame, "Excluido com Sucesso");
-		}catch(ProdutoException e){
+		}catch(DBException e){
 			System.out.println("Erro ao excluir produto");
 			JOptionPane.showMessageDialog(mainFrame, "Erro ao excluir");
 			e.printStackTrace();
 		}
 		
 	}
-
+	
+	public void gerarRelatorio(){
+		relatoriosFrame.getCenterPanel().add(relatoriosFrame.getListaProdutosRelatorioPanel());
+	}
+	
+	public void IncluirOrdem(){
+		OrdemProducaoDAO ordemDAO = new OrdemProducaoDAO();
+		OrdemProducaoTO ordem = new OrdemProducaoTO();
+		
+		ordem = ordemProducaoFrame.getBuscaProdutos().getCadastrarOrdem();
+		
+		try{
+			ordemDAO.insertNewOrdem(ordem);
+		}catch(DBException e){
+			System.out.println("Erro" + e);
+			e.printStackTrace();
+		}
+		JOptionPane.showMessageDialog(mainFrame, "Salvo com Sucesso");
+		ordemProducaoFrame.cancelarClicked();
+	}
 }

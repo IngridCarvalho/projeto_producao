@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -33,11 +34,7 @@ public class ListaComponentesPanel extends JPanel{
 	
 	Object [] colunasProdutos = {"Código", "Nome", "Quantidade", "Custo"};
 	
-	Object [][] dados = {
-			{4, "Farinha de trigo", 0.5, 3.5},
-			{5, "Manteiga", 0.3, 3},
-			{6, "Chocolate em pó", 0.2, 6}
-			};
+	Object [][] dados = {};
 	
 	private JLabel getComponentesLabel() {
 		if(componentesLabel == null){
@@ -91,9 +88,7 @@ public class ListaComponentesPanel extends JPanel{
 	}
 
 	public void incluirComponenteClicked() {
-		//produtosFrame.incluirComponenteClicked();
-		//TODO: IMPLEMENTAR
-		
+		JOptionPane.showMessageDialog(this, "Implementação Futura");
 	}
 
 }

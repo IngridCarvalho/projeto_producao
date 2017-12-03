@@ -5,6 +5,7 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Date;
 import java.text.ParseException;
 import java.util.ArrayList;
 
@@ -20,6 +21,7 @@ import javax.swing.text.MaskFormatter;
 
 import br.edu.univas.si4.tp4.producao.listener.ButtonsListenerBuscar;
 import br.edu.univas.si4.tp4.producao.listener.ButtonsListenerOpcoesProdutos;
+import br.edu.univas.si4.tp4.producao.model.OrdemProducaoTO;
 import br.edu.univas.si4.tp4.producao.view.BotoesOpcoesPanel;
 
 public class CadastrarOrdemProducaoPanel extends JPanel{
@@ -28,6 +30,8 @@ public class CadastrarOrdemProducaoPanel extends JPanel{
 	
 	private ArrayList<ButtonsListenerBuscar> listenerBuscar = new ArrayList<>();
 	
+	private JLabel numeroOrdemLabel;
+	private JTextField numeroOrdemField;
 	private JLabel descricaoOrdemLabel;
 	private JTextField descricaoOrdemField;
 	private MaskFormatter dataMask;
@@ -45,6 +49,8 @@ public class CadastrarOrdemProducaoPanel extends JPanel{
 	private JTextField qtdField;
 	private BotoesOpcoesPanel botoesOpcoes;
 	
+	private GridBagConstraints numeroOrdemLabelConstraints;
+	private GridBagConstraints numeroOrdemFieldConstraints;
 	private GridBagConstraints descricaoOrdemLabelConstraints;
 	private GridBagConstraints descricaoOrdemFieldConstraints;
 	private GridBagConstraints dataInclusaoLabelConstraints;
@@ -67,6 +73,8 @@ public class CadastrarOrdemProducaoPanel extends JPanel{
 	public void initialize(){
 		setLayout(new GridBagLayout());
 		getStatus();
+		add(getNumeroOrdemLabel(), getNumeroOrdemLabelConstraints());
+		add(getNumeroOrdemField(), getNumeroOrdemFieldConstraints());
 		add(getDescricaoOrdemLabel(), getDescricaoOrdemLabelConstraints());
 		add(getDescricaoOrdemField(), getDescricaoOrdemFieldConstraints());
 		add(getDataInclusaoLabel(), getDataInclusaoLabelConstraints());
@@ -83,6 +91,21 @@ public class CadastrarOrdemProducaoPanel extends JPanel{
 		add(getBotoesOpcoes(), getBotoesOpcoesConstraints());
 	}
 		
+	public JLabel getNumeroOrdemLabel() {
+		if(numeroOrdemLabel == null){
+			numeroOrdemLabel = new JLabel();
+			numeroOrdemLabel.setText("Número:");
+		}
+		return numeroOrdemLabel;
+	}
+
+	public JTextField getNumeroOrdemField() {
+		if(numeroOrdemField == null){
+			numeroOrdemField = new JTextField();
+		}
+		return numeroOrdemField;
+	}
+
 	private JLabel getDescricaoOrdemLabel() {
 		if(descricaoOrdemLabel == null){
 			descricaoOrdemLabel = new JLabel();
@@ -118,7 +141,7 @@ public class CadastrarOrdemProducaoPanel extends JPanel{
 	private MaskFormatter getDataMask() {
 		if(dataMask == null){
 			try{
-				dataMask = new MaskFormatter("##/##/####");
+				dataMask = new MaskFormatter("####-##-##");
 				dataMask.setPlaceholderCharacter('_');
 			}
 			catch(ParseException excp){
@@ -172,7 +195,7 @@ public class CadastrarOrdemProducaoPanel extends JPanel{
 	private JLabel getPesquisaProdutoLabel() {
 		if(pesquisaProdutoLabel == null){
 			pesquisaProdutoLabel = new JLabel();
-			pesquisaProdutoLabel.setText("Código ou nome do item:");
+			pesquisaProdutoLabel.setText("Código do item:");
 		}
 		return pesquisaProdutoLabel;
 	}
@@ -242,13 +265,34 @@ public class CadastrarOrdemProducaoPanel extends JPanel{
 		}
 		return botoesOpcoes;
 	}
+	
+	public GridBagConstraints getNumeroOrdemLabelConstraints() {
+		if(numeroOrdemLabelConstraints == null){
+			numeroOrdemLabelConstraints = new GridBagConstraints();
+			numeroOrdemLabelConstraints.gridx = 0;
+			numeroOrdemLabelConstraints.gridy = 0;
+			numeroOrdemLabelConstraints.insets = new Insets(15, 15, 5, 15);
+		}
+		return numeroOrdemLabelConstraints;
+	}
 
+	public GridBagConstraints getNumeroOrdemFieldConstraints() {
+		if(numeroOrdemFieldConstraints == null){
+			numeroOrdemFieldConstraints = new GridBagConstraints();
+			numeroOrdemFieldConstraints.gridx = 1;
+			numeroOrdemFieldConstraints.gridy = 0;
+			numeroOrdemFieldConstraints.ipadx = 100;
+			numeroOrdemFieldConstraints.insets = new Insets(15, 15, 5, 15);
+		}
+		return numeroOrdemFieldConstraints;
+	}
+	
 	private GridBagConstraints getDescricaoOrdemLabelConstraints() {
 		if(descricaoOrdemLabelConstraints == null){
 			descricaoOrdemLabelConstraints = new GridBagConstraints();
 			descricaoOrdemLabelConstraints.gridx = 0;
-			descricaoOrdemLabelConstraints.gridy = 0;
-			descricaoOrdemLabelConstraints.insets = new Insets(15, 15, 5, 15);
+			descricaoOrdemLabelConstraints.gridy = 1;
+			descricaoOrdemLabelConstraints.insets = new Insets(3, 15, 5, 15);
 		}
 		return descricaoOrdemLabelConstraints;
 	}
@@ -257,11 +301,11 @@ public class CadastrarOrdemProducaoPanel extends JPanel{
 		if(descricaoOrdemFieldConstraints == null){
 			descricaoOrdemFieldConstraints = new GridBagConstraints();
 			descricaoOrdemFieldConstraints.gridx = 1;
-			descricaoOrdemFieldConstraints.gridy = 0;
+			descricaoOrdemFieldConstraints.gridy = 1;
 			descricaoOrdemFieldConstraints.ipadx = 100;
 			descricaoOrdemFieldConstraints.fill = GridBagConstraints.HORIZONTAL;
 			descricaoOrdemFieldConstraints.gridwidth = 3;
-			descricaoOrdemFieldConstraints.insets = new Insets(15, 15, 5, 15);
+			descricaoOrdemFieldConstraints.insets = new Insets(3, 15, 5, 15);
 		}
 		return descricaoOrdemFieldConstraints;
 	}
@@ -270,7 +314,7 @@ public class CadastrarOrdemProducaoPanel extends JPanel{
 		if(dataInclusaoLabelConstraints == null){
 			dataInclusaoLabelConstraints = new GridBagConstraints();
 			dataInclusaoLabelConstraints.gridx = 0;
-			dataInclusaoLabelConstraints.gridy = 1;
+			dataInclusaoLabelConstraints.gridy = 2;
 			dataInclusaoLabelConstraints.insets = new Insets(3, 15, 5, 15);
 		}
 		return dataInclusaoLabelConstraints;
@@ -280,7 +324,7 @@ public class CadastrarOrdemProducaoPanel extends JPanel{
 		if(dataInclusaoFieldConstraints == null){
 			dataInclusaoFieldConstraints = new GridBagConstraints();
 			dataInclusaoFieldConstraints.gridx = 1;
-			dataInclusaoFieldConstraints.gridy = 1;
+			dataInclusaoFieldConstraints.gridy = 2;
 			dataInclusaoFieldConstraints.ipadx = 100;
 			dataInclusaoFieldConstraints.fill = GridBagConstraints.HORIZONTAL;
 			dataInclusaoFieldConstraints.insets = new Insets(3, 15, 5, 15);
@@ -292,7 +336,7 @@ public class CadastrarOrdemProducaoPanel extends JPanel{
 		if(dataFinalizacaoLabelConstraints == null){
 			dataFinalizacaoLabelConstraints = new GridBagConstraints();
 			dataFinalizacaoLabelConstraints.gridx = 2;
-			dataFinalizacaoLabelConstraints.gridy = 1;
+			dataFinalizacaoLabelConstraints.gridy = 2;
 			dataFinalizacaoLabelConstraints.anchor = GridBagConstraints.EAST;
 			dataFinalizacaoLabelConstraints.insets =  new Insets(3, 15, 5, 15);
 		}
@@ -303,7 +347,7 @@ public class CadastrarOrdemProducaoPanel extends JPanel{
 		if(dataFinalizacaoFieldConstraints == null){
 			dataFinalizacaoFieldConstraints = new GridBagConstraints();
 			dataFinalizacaoFieldConstraints.gridx = 3;
-			dataFinalizacaoFieldConstraints.gridy = 1;
+			dataFinalizacaoFieldConstraints.gridy = 2;
 			dataFinalizacaoFieldConstraints.ipadx = 100;
 			dataFinalizacaoFieldConstraints.anchor = GridBagConstraints.WEST;
 			dataFinalizacaoFieldConstraints.insets = new Insets(3, 15, 5, 15);
@@ -315,7 +359,7 @@ public class CadastrarOrdemProducaoPanel extends JPanel{
 		if(pendenteRadioConstraints == null){
 			pendenteRadioConstraints = new GridBagConstraints();
 			pendenteRadioConstraints.gridx = 0;
-			pendenteRadioConstraints.gridy = 2;
+			pendenteRadioConstraints.gridy = 3;
 			pendenteRadioConstraints.insets = new Insets(15, 15, 15, 15);
 		}
 		return pendenteRadioConstraints;
@@ -325,7 +369,7 @@ public class CadastrarOrdemProducaoPanel extends JPanel{
 		if(finalizadoRadioConstraints == null){
 			finalizadoRadioConstraints = new GridBagConstraints();
 			finalizadoRadioConstraints.gridx = 1;
-			finalizadoRadioConstraints.gridy = 2;
+			finalizadoRadioConstraints.gridy = 3;
 			finalizadoRadioConstraints.insets = new Insets(15, 15, 15, 15);
 		}
 		return finalizadoRadioConstraints;
@@ -335,7 +379,7 @@ public class CadastrarOrdemProducaoPanel extends JPanel{
 		if(pesquisaProdutosLabelConstraints == null){
 			pesquisaProdutosLabelConstraints = new GridBagConstraints();
 			pesquisaProdutosLabelConstraints.gridx = 0;
-			pesquisaProdutosLabelConstraints.gridy = 3;
+			pesquisaProdutosLabelConstraints.gridy = 4;
 			pesquisaProdutosLabelConstraints.insets = new Insets(3, 15, 5, 5);
 		}
 		return pesquisaProdutosLabelConstraints;
@@ -345,7 +389,7 @@ public class CadastrarOrdemProducaoPanel extends JPanel{
 		if(pesquisaProdutosFieldConstraints == null){
 			pesquisaProdutosFieldConstraints = new GridBagConstraints();
 			pesquisaProdutosFieldConstraints.gridx = 1;
-			pesquisaProdutosFieldConstraints.gridy = 3;
+			pesquisaProdutosFieldConstraints.gridy = 4;
 			pesquisaProdutosFieldConstraints.ipadx = 100;
 			pesquisaProdutosFieldConstraints.fill = GridBagConstraints.HORIZONTAL;
 			pesquisaProdutosFieldConstraints.weightx = 1.0;
@@ -359,7 +403,7 @@ public class CadastrarOrdemProducaoPanel extends JPanel{
 		if(btBuscarConstraints == null){
 			 btBuscarConstraints = new GridBagConstraints();
 			 btBuscarConstraints.gridx = 3;
-			 btBuscarConstraints.gridy = 3;
+			 btBuscarConstraints.gridy = 4;
 			
 			 btBuscarConstraints.insets = new Insets(3, 0, 5, 15);
 		}
@@ -370,7 +414,7 @@ public class CadastrarOrdemProducaoPanel extends JPanel{
 		if(qtdLabelConstraints == null){
 			qtdLabelConstraints = new GridBagConstraints();
 			qtdLabelConstraints.gridx = 0;
-			qtdLabelConstraints.gridy = 4;
+			qtdLabelConstraints.gridy = 5;
 			qtdLabelConstraints.insets = new Insets(0, 15, 5, 15);
 		}
 		return qtdLabelConstraints;
@@ -380,7 +424,7 @@ public class CadastrarOrdemProducaoPanel extends JPanel{
 		if(qtdFieldConstraints == null){
 			qtdFieldConstraints = new GridBagConstraints();
 			qtdFieldConstraints.gridx = 1;
-			qtdFieldConstraints.gridy = 4;
+			qtdFieldConstraints.gridy = 5;
 			qtdFieldConstraints.anchor = GridBagConstraints.WEST;
 			qtdFieldConstraints.ipadx = 100;
 			qtdFieldConstraints.insets = new Insets(0, 15, 5, 15);
@@ -392,7 +436,7 @@ public class CadastrarOrdemProducaoPanel extends JPanel{
 		if(botoesOpcoesConstraints == null){
 			botoesOpcoesConstraints = new GridBagConstraints();
 			botoesOpcoesConstraints.gridx = 0;
-			botoesOpcoesConstraints.gridy = 5;
+			botoesOpcoesConstraints.gridy = 6;
 			botoesOpcoesConstraints.gridwidth = 4;
 			botoesOpcoesConstraints.weightx = 1.0;
 		}
@@ -422,6 +466,15 @@ public class CadastrarOrdemProducaoPanel extends JPanel{
 	public void alterarClicked(){
 		JOptionPane.showMessageDialog(this, "Alterado com sucesso");
 		//TODO: implementar alteração do item da lista
+	}
+	
+	public OrdemProducaoTO getCadastrarOrdem(){
+		OrdemProducaoTO ordem = new OrdemProducaoTO();
+		ordem.setNumero(Integer.parseInt(getNumeroOrdemField().getText()));
+		ordem.setDescricao(getDescricaoOrdemField().getText());
+		ordem.setDataEmissao(Date.valueOf((getDataInclusaoField().getText())));
+		ordem.setDataFinalizacao(Date.valueOf(getDataFinalizacaoField().getText()));
+		return ordem;
 	}
 	
 }

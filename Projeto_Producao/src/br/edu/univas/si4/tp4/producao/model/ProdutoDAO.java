@@ -1,6 +1,5 @@
 package br.edu.univas.si4.tp4.producao.model;
 
-import java.awt.List;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -8,12 +7,11 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class ProdutoDAO {
-	
-	private Object[][] listaProdutos;
+
 
 
 	public void insertNewProduto(ProdutoTO to)
-		throws ProdutoException{
+		throws DBException{
 			String sentenca = "INSERT INTO PRODUTOS "
 					+ "(CODIGO, NOME, QTD, PRECO_CUSTO, PRECO_VENDA, TIPO_PRODUTO)"
 					+ "VALUES (?, ?, ?, ?, ?, ?)";
@@ -32,14 +30,14 @@ public class ProdutoDAO {
 			prepStat.setInt(6, to.getTipo_produto());
 			prepStat.execute();
 		}catch(Exception e){
-			throw new ProdutoException("Erro salvando produto" + to.getNome(), e);
+			throw new DBException("Erro salvando produto" + to.getNome(), e);
 		}finally{
 			DBUtil.closeConnection(conn);
 		}
 	}
 	
 	
-	public ArrayList<ProdutoTO> listarProdutos() throws ProdutoException{
+	public ArrayList<ProdutoTO> listarProdutos() throws DBException{
 		String sql = "SELECT CODIGO, NOME, QTD"
 				+ " FROM PRODUTOS ORDER BY 1";
 		ArrayList<ProdutoTO> listaProdutos = new ArrayList<ProdutoTO>();
@@ -58,14 +56,14 @@ public class ProdutoDAO {
 				listaProdutos.add(to);
 			}
 		}catch(SQLException e){
-			throw new ProdutoException("Erro");
+			throw new DBException("Erro");
 		}finally{
 			DBUtil.closeConnection(conn);
 		}
 		return listaProdutos;
 	}
 	
-	public void deleteProduto(int codigo) throws ProdutoException{
+	public void deleteProduto(int codigo) throws DBException{
 		String sql = "DELETE FROM PRODUTOs WHERE CODIGO = ?";
 		Connection conn = null;
 		try{
@@ -74,24 +72,29 @@ public class ProdutoDAO {
 			prep.setInt(1, codigo);
 			prep.execute();
 		}catch(SQLException e){
-			throw new ProdutoException("Erro ao excluir produto: " + codigo);
+			throw new DBException("Erro ao excluir produto: " + codigo);
 		}finally{
 			DBUtil.closeConnection(conn);
 		}
 	}
 	
-	public ArrayList<ItensOrdemTO> relatorioProdutos() throws ProdutoException{
+	public ArrayList<ItensOrdemTO> relatorioProdutos() throws DBException{
 		String sql = "SELECT CODIGO, NOME, QTD, CUSTO_UNITARIO, CUSTO_TOTAL"
-				+ " FROM PRODUTOS, ITENSORDEMPRODUCAO"
-				+ " WHERE PRODUTOS.CODIGO = ITENSORDEMPRODUCAO.CODIGO_ITEM";
+				+ " FROM PRODUTOS, ITENSORDEMPRODUCAO, ORDEMPRODUCAO"
+				+ " WHERE PRODUTOS.CODIGO = ITENSORDEMPRODUCAO.CODIGO_ITEM"
+				+ " AND ITENSORDEMPRODUCAO.NUMERO_ORDEM = ORDEMPRODUCAO.NUMERO";
+				//+ " AND NOME LIKE ? ORDER BY 2";
+		
 		ArrayList<ItensOrdemTO> relatorio = new ArrayList<ItensOrdemTO>();
 		Connection conn = null;
 		
 		try{
 			conn = DBUtil.openConnection();
 			PreparedStatement prep = conn.prepareStatement(sql);
+			//prep.setString(1, "%" + nome + "%");
 			
 			ResultSet rs = prep.executeQuery();
+			
 			while(rs.next()){
 				ItensOrdemTO to = new ItensOrdemTO();
 				to.setCodigo(rs.getInt(1));
@@ -102,11 +105,13 @@ public class ProdutoDAO {
 				relatorio.add(to);
 			}
 		}catch(SQLException e){
-			throw new ProdutoException("Erro" + e);
+			throw new DBException("Erro" + e);
 		}finally{
 			DBUtil.closeConnection(conn);
 		}
 		return relatorio;
 	}
+	
+	
 }
 

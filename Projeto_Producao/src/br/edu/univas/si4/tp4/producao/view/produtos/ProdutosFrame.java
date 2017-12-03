@@ -9,7 +9,7 @@ import br.edu.univas.si4.tp4.producao.controller.Controller;
 import br.edu.univas.si4.tp4.producao.listener.ButtonsListenerCadastro;
 import br.edu.univas.si4.tp4.producao.listener.ButtonsListenerOpcoesProdutos;
 import br.edu.univas.si4.tp4.producao.model.ProdutoDAO;
-import br.edu.univas.si4.tp4.producao.model.ProdutoException;
+import br.edu.univas.si4.tp4.producao.model.DBException;
 import br.edu.univas.si4.tp4.producao.model.ProdutoTO;
 import br.edu.univas.si4.tp4.producao.view.BotoesCadastroPanel;
 import br.edu.univas.si4.tp4.producao.view.BotoesOpcoesPanel;
@@ -27,9 +27,7 @@ public class ProdutosFrame extends JFrame{
 	private CadastrarProdutosPanel cadastroProdutos;
 	private ListaComponentesPanel listaComponentes;
 	private BotoesCadastroPanel botoesCadastro;
-	
-	private ProdutoDAO produtoDAO;
-	private ProdutoTO produtoTO; 
+
 	
 	public ProdutosFrame(Controller controller){
 		super("Produtos");
@@ -63,7 +61,7 @@ public class ProdutosFrame extends JFrame{
 		}
 		return listaProdutos;
 	}
-
+	
 	public BotoesOpcoesPanel getBotoesProdutos() {
 		if(botoesProdutos == null){
 			botoesProdutos = new BotoesOpcoesPanel();
@@ -131,27 +129,27 @@ public class ProdutosFrame extends JFrame{
 		return botoesCadastro;
 	}
 	
-	private void setBuscaProdutos(BuscaProdutosPanel buscaProdutos) {
+	public void setBuscaProdutos(BuscaProdutosPanel buscaProdutos) {
 		this.buscaProdutos = buscaProdutos;
 	}
 
-	private void setListaProdutos(ListaProdutosPanel listaProdutos) {
+	public void setListaProdutos(ListaProdutosPanel listaProdutos) {
 		this.listaProdutos = listaProdutos;
 	}
 
-	private void setBotoesProdutos(BotoesOpcoesPanel botoesProdutos) {
+	public void setBotoesProdutos(BotoesOpcoesPanel botoesProdutos) {
 		this.botoesProdutos = botoesProdutos;
 	}
 
-	private void setCadastroProdutos(CadastrarProdutosPanel cadastroProdutos) {
+	public void setCadastroProdutos(CadastrarProdutosPanel cadastroProdutos) {
 		this.cadastroProdutos = cadastroProdutos;
 	}
 
-	private void setListaComponentes(ListaComponentesPanel listaComponentes) {
+	public void setListaComponentes(ListaComponentesPanel listaComponentes) {
 		this.listaComponentes = listaComponentes;
 	}
 
-	private void setBotoesCadastro(BotoesCadastroPanel botoesCadastro) {
+	public void setBotoesCadastro(BotoesCadastroPanel botoesCadastro) {
 		this.botoesCadastro = botoesCadastro;
 	}
 
@@ -166,16 +164,7 @@ public class ProdutosFrame extends JFrame{
 	}
 	
 	public void alterarClicked(){
-		int linha = listaProdutos.getTabelaProdutos().getSelectedRow();
-		if(linha == -1){
-			JOptionPane.showMessageDialog(this, "Nenhum item selecionado");
-		}else{
-			Object valor = listaProdutos.getTabelaProdutos().getValueAt(linha, 0);
-			controllerProdutos.alterarProdutoClicked(valor);
-		}
-		
-		
-	//	JOptionPane.showMessageDialog(this, "Alterar");
+		JOptionPane.showMessageDialog(this, "Implementação Futura");
 	}
 	public void excluirClicked(){
 		int linha = listaProdutos.getTabelaProdutos().getSelectedRow();
@@ -185,6 +174,10 @@ public class ProdutosFrame extends JFrame{
 			Object valor = listaProdutos.getTabelaProdutos().getValueAt(linha, 0);
 			int valorInt = (int)valor;
 			controllerProdutos.excluirProdutoClicked(valorInt);
+			getListaProdutos().removeAll();
+			getListaProdutos().revalidate();
+			listaProdutos = null;
+			add(getListaProdutos(), BorderLayout.CENTER);
 		}
 	}
 	
@@ -206,7 +199,7 @@ public class ProdutosFrame extends JFrame{
 	}
 
 	public void incluirComponenteClicked() {
-		controllerProdutos.Produtos();
+		//controllerProdutos.Produtos();
 	}
 	
 }

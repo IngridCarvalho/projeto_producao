@@ -27,7 +27,7 @@ public class ListaProdutosProducaoPanel extends JPanel{
 	Object [] colunasProdutos = {"Código", "Nome", "Quantidade", "Custo", "Total"};
 	
 	Object [][] dados = {
-			{1, "Bolo de Chocolate", "3", 10.00, 30.00}
+			
 			};
 
 
@@ -42,7 +42,7 @@ public class ListaProdutosProducaoPanel extends JPanel{
 		if(tabelaProdutosProducaoScroll == null){
 			tabelaProdutosProducaoScroll = new JScrollPane(tabelaProdutosProducao);
 			tabelaProdutosProducaoScroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-			tabelaProdutosProducaoScroll.setPreferredSize(new Dimension(670, 200));
+			tabelaProdutosProducaoScroll.setPreferredSize(new Dimension(670, 150));
 		}
 		return tabelaProdutosProducaoScroll;
 	}

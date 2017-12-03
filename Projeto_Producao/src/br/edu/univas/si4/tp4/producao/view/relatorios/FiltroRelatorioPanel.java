@@ -6,82 +6,61 @@ import java.text.ParseException;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
-import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.text.MaskFormatter;
 
 import br.edu.univas.si4.tp4.producao.listener.ButtonsListenerRelatorio;
 
 public class FiltroRelatorioPanel extends JPanel {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5839268089570649811L;
+
 	private ArrayList<ButtonsListenerRelatorio> listenerGerar = new ArrayList<>();
 	
-	private JLabel periodoLabel;
-	private JFormattedTextField periodoInicialField;
-	private JLabel ateLabel;
-	private JFormattedTextField periodoFinalField;
+	private JLabel NomePesquisaLabel;
+	//private JTextField CampoPesquisaField;
 	private JButton btGerarRelatorio;
-	private MaskFormatter dataMask;
+	private String nome;
 	
 	public FiltroRelatorioPanel(){
 		initialize();
 	}
 	
 	public void initialize(){
-		add(getPeriodoLabel());
-		add(getPeriodoInicialField());
-		add(getAteLabel());
-		add(getPeriodoFinalField());
-		add(getBtGerarRelatorio());
-		
+		add(getNomePesquisaLabel());
+		//add(getCampoPesquisaField());
+		add(getBtGerarRelatorio());	
+	}
+	
+	public String getNome() {
+		return nome;
 	}
 
-	private JLabel getPeriodoLabel() {
-		if(periodoLabel == null){
-			periodoLabel = new JLabel();
-			periodoLabel.setText("Período:");
-		}
-		return periodoLabel;
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
-	private MaskFormatter getDataMask() {
-		if(dataMask == null){
-			try{
-				dataMask = new MaskFormatter("##/##/####");
-				dataMask.setPlaceholderCharacter('_');
-			}
-			catch(ParseException excp){
-				System.err.println("Erro na formatação: " + excp.getMessage());
-				System.exit(-1);
-			}
+
+	public JLabel getNomePesquisaLabel() {
+		if(NomePesquisaLabel == null){
+			NomePesquisaLabel = new JLabel();
+			NomePesquisaLabel.setText("Relatório de Itens Produzidos");
 		}
-		return dataMask;
+		return NomePesquisaLabel;
 	}
 
-	private JFormattedTextField getPeriodoInicialField() {
-		if(periodoInicialField == null){
-			periodoInicialField = new JFormattedTextField(getDataMask());
-			periodoInicialField.setColumns(10);
+	/*public JTextField getCampoPesquisaField() {
+		if(CampoPesquisaField == null){
+			CampoPesquisaField = new JTextField();
+			CampoPesquisaField.setColumns(30);
 		}
-		return periodoInicialField;
-	}
-
-	private JLabel getAteLabel() {
-		if(ateLabel == null){
-			ateLabel = new JLabel();
-			ateLabel.setText("até");
-		}
-		return ateLabel;
-	}
-
-	private JFormattedTextField getPeriodoFinalField() {
-		if(periodoFinalField == null){
-			periodoFinalField = new JFormattedTextField(getDataMask());
-			periodoFinalField.setColumns(10);
-		}
-		return periodoFinalField;
-	}
+		return CampoPesquisaField;
+	}*/
 
 	private JButton getBtGerarRelatorio() {
 		if(btGerarRelatorio == null){
@@ -109,5 +88,9 @@ public class FiltroRelatorioPanel extends JPanel {
 		}
 			
 	}
+	
+	
+	
+	
 	
 }

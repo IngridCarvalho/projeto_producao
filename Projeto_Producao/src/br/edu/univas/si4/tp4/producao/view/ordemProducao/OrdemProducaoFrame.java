@@ -93,7 +93,7 @@ public class OrdemProducaoFrame extends JFrame{
 		return botoesOpcoes;
 	}
 	
-	private CadastrarOrdemProducaoPanel getBuscaProdutos() {
+	public CadastrarOrdemProducaoPanel getBuscaProdutos() {
 		if(buscaProdutos == null){
 			buscaProdutos = new CadastrarOrdemProducaoPanel();
 			buscaProdutos.addButtonsListenerBuscar(new ButtonsListenerBuscar() {
@@ -125,7 +125,7 @@ public class OrdemProducaoFrame extends JFrame{
 				
 				@Override
 				public void confirmarPerfomed() {
-					incluirProdutosClicked();
+					incluirOrdemClicked();
 					
 				}
 				
@@ -192,11 +192,11 @@ public class OrdemProducaoFrame extends JFrame{
 		JOptionPane.showMessageDialog(this, "Buscar");
 		//TODO: implementar busca de produtos
 	}
-	private void incluirProdutosClicked() {
-		JOptionPane.showMessageDialog(this, "Salvo com sucesso");
+	private void incluirOrdemClicked() {
+		controller.IncluirOrdem();
 	}
 	
-	private void cancelarClicked(){
+	public void cancelarClicked(){
 		getBuscaProdutos().removeAll();
 		getBuscaProdutos().revalidate();
 		getListaProdutos().removeAll();
